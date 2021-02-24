@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/stylesForm.css">
+
+
+</head>
+<body>
+
+<div id="main" class="container">
+
+    <form id="myForm" action="#" method="post">
+        <!-- Contact Information -->
+        <fieldset class="form-group">
+            <legend>Please Complete Intake Form</legend>
+
+            <div class="form-group">
+                <label for="firstName">Your First Name (required)</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" >
+            </div>
+
+            <div class="form-group">
+                <label for="middleName">Your Middle Name (if you have one otherwise enter "none")</label>
+                <input type="text" class="form-control" id="middleName" name="middleName" >
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Your Last Name (required - if you have more than one enter them all)</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" >
+            </div>
+
+            <div class="form-group">
+                <label for="dateOfBirth">Your Date of Birth (required)</label>
+                <input placeholder="dd/mm/yyyy" type="text" class="form-control" id="dateOfBirth" name="dateOfBirth" >
+            </div>
+
+            <div class="form-group">
+                <label for="email">Your Email (required)</label>
+                <input type="text" class="form-control" id="email" name="email" >
+            </div>
+
+            <div class="form-group">
+                <label for="phoneNum">Your Phone Number (required)</label>
+                <input type="text" class="form-control" id="phoneNum" name="phoneNum" >
+            </div>
+
+            <div class="form-group">
+                <label for="city">Your City(required)</label>
+                <input type="text" class="form-control" id="city" name="city" >
+            </div>
+
+            <div class="form-group">
+                <label for="state">Your State(required)</label>
+                <input type="text" class="form-control" id="state" name="state" >
+            </div>
+
+            <div class="form-group">
+                <label for="zip">Your Zip (required)</label>
+                <input type="text" class="form-control" id="zip" name="zip" >
+            </div>
+
+            <div class="form-group">
+                <p>Are you Legally Married? (required)</p>
+
+                <input type="radio" class="form-control" id="marriedYes" name="married" >
+                <label for="marriedYes">Yes</label>
+
+                <input type="radio" class="form-control" id="marriedNo" name="married" >
+                <label for="marriedNo">No</label>
+            </div>
+
+
+           <!--spouse info-->
+
+            <div class="form-group">
+                <p>Can we contact your spouse? (required)</p>
+
+                <input type="radio" class="form-control" id="spouseYes" name="spouse" >
+                <label for="spouseYes">Yes</label>
+
+                <input type="radio" class="form-control" id="spouseNo" name="spouse" >
+                <label for="spouseNo">No</label>
+
+                <input type="radio" class="form-control" id="doesNotApp" name="spouse" >
+                <label for="doesNotApp">Doesn't Apply</label>
+            </div>
+
+            <div id="hidden" hidden class="form-group">
+                <label for="sFirst">Spouse First Name</label>
+                <input type="text" class="form-control" id="sFirst" name="sFirst" >
+
+                <label for="sMiddle">Spouse Middle Name</label>
+                <input type="text" class="form-control" id="sMiddle" name="sMiddle" >
+
+                <label for="sLast">Spouse First Name</label>
+                <input type="text" class="form-control" id="sLast" name="sLast" >
+
+                <label for="sDate">Spouse Date of Birth</label>
+                <input type="text" class="form-control" id="sDate" name="sDate" >
+
+                <label for="sEmail">Spouse Email</label>
+                <input type="text" class="form-control" id="sEmail" name="sEmail" >
+
+                <label for="sPhoneNum">Spouse Phone Number</label>
+                <input placeholder="123-456-7890" type="text" class="form-control" id="sPhoneNum" name="sPhoneNum" >
+
+                <label for="sAddress">Spouse Street Address (if different)</label>
+                <input type="text" class="form-control" id="sAddress" name="sAddress" >
+
+                <label for="sCity">Spouse City</label>
+                <input type="text" class="form-control" id="sCity" name="sCity" >
+
+                <label for="sState">Spouse State</label>
+                <input type="text" class="form-control" id="sState" name="sState" >
+
+                <label for="sZip">Spouse Zip</label>
+                <input type="text" class="form-control" id="sZip" name="sZip" >
+            </div><!--end of spouse form-->
+
+
+
+                <!--
+                <label>
+                    <input type="checkbox" value="checkbox" name="CheckboxGroup1" id="boxchecked" />
+                    Other.</label>
+
+                <div id="hidden" hidden class="form-group">
+                    <label for="lastName">Spouse Info</label>
+                    <input type="text" class="form-control" id="spouse" name="spouse" >
+                </div>
+                -->
+
+
+            </fieldset>
+        </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script src="functions.js"></script>
+    </body>
+    </html>
