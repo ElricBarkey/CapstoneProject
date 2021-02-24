@@ -25,9 +25,9 @@
 <?php
 //require('/home/ebarkeyg/db.php');
 
-$database = 'ebarkeyg_grc';
-$username = 'ebarkeyg_grcuser';
-$password = 'Elroduke99!';
+$database = '';
+$username = '';
+$password = '';
 $hostname = 'localhost';
 
 $cnxn = @mysqli_connect($hostname, $username, $password, $database)             //suppresses error to hide information
