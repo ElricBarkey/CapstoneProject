@@ -25,7 +25,7 @@ require('check-login.php');
 
 </head>
 
-<body>
+<body onload="hide()">
 
 <div class="d-flex" id="wrapper">
 
@@ -73,13 +73,47 @@ require('check-login.php');
             </div>
         </nav>
 
-        <div class="container-fluid">
-            <h1 class="mt-4">Table</h1>
-            <table style="border: solid black">
+        <div class="container-fluid" id="tableTest">
+            <div>
+                <button onclick="hideTables('#g')">General</button>|
+                <button onclick="hideTables('#p')">phones</button>|
+                <button onclick="hideTables('#n')">Notes</button>|
+                <button onclick="hideTables('#r')">Relatives</button>|
+                <button onclick="hideTables('#c')">Cases</button>|
+                <button onclick="hideTables('#a')">Activities List</button>|
+            </div>
+            <table onclick="hideTables()">
                 <?php
-                include('demoFormHeader.php');
+                    include('requires/contactTab.php');
                 ?>
             </table>
+            <table onclick="hideTables()">
+                <?php
+                    include('requires/phonesTab.php');
+                ?>
+            </table>
+            <table onclick="hideTables()">
+                <?php
+                    include('requires/notesTab.php');
+                ?>
+            </table>
+            <table onclick="hideTables()">
+                <?php
+                    include('requires/relativesTab.php');
+                ?>
+            </table>
+            <table onclick="hideTables()">
+                <?php
+                    include('requires/next sprint/caseGeneralTab.php');
+                ?>
+            </table>
+            <table onclick="hideTables()">
+                <?php
+                    include('requires/activitiesTab.php');
+                ?>
+            </table>
+
+
     </div>
     <!-- /#page-content-wrapper -->
 
@@ -90,6 +124,7 @@ require('check-login.php');
 <script src="bootstrap/vendor/jquery/jquery.js"></script>
 <script src="bootstrap/vendor/jquery/jquery.slim.js"></script>
 <script src="bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="requires/script.js"></script>
 
 <!-- Menu Toggle Script -->
 <script>
