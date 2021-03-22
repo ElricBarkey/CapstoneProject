@@ -5,6 +5,7 @@ include('requires/adminHeader.php');
 require('db.php');
 include('requires/searchBar.php');
 include('requires/adminBody.php');
+include('requires/OwnerTabs/ownerController.php');
 
 if($_GET['tab'] == 'general'){
     //echo ('test');
@@ -25,8 +26,13 @@ else if($_GET['tab'] == 'cases'){
 else if($_GET['tab'] == 'activities'){
     include('requires/activitiesTab.php');
 }
+else if($_GET['ownerTab'] == 'clientActivity'){
+    include('requires/add-Activity.php');
+}
 else if($_GET['tab'] == 'caseGeneralTab'){
     include('requires/caseTabs/caseController.php');
 }
 include('requires/adminFooter.php');
+
+?>
 

@@ -7,6 +7,11 @@ include('../searchBar.php');
 include('../adminBody.php');
 
 include('caseHeader.php');
+
+if(isset($_GET['caseID'])){
+    $_SESSION['caseID'] = $_GET['caseID'];
+}
+
 if($_GET['caseTab'] == 'general'){
     include('caseGeneralTab.php');
 }
@@ -31,3 +36,5 @@ else if($_GET['caseTab'] == 'contacts'){
 else if($_GET['caseTab'] == 'winWord'){
     include('caseWinWord.php');
 }
+
+include('../adminFooter.php');

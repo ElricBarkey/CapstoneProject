@@ -68,5 +68,5 @@
                 header("Refresh:0", "False", "http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/admin.php");
             }
         ?>
-
+    </div>
 </body>

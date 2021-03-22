@@ -1,91 +1,63 @@
 <?php
 
 //check if information was edited
-if($_POST['confirmBox'] == 'on'){
-    //var_dump($_POST);
-
-    $sql = "UPDATE `slips` SET `CaseComment`='".$_POST['comments']."' WHERE `clientID`='".$_SESSION['ClientID']."' AND `caseID`='".$_SESSION['caseID']."';";
-    echo '<script>alert("database updated!")</script>';
-    mysqli_query($cnxn, $sql);
-
-}
 ?>
-<form id='form' method='post' action='#'>
+<div id="main" class="container">
     <!-- Contact Information -->
-    <fieldset class=\"form-group\">
-        <div class='row'>
-            <div class='col-sm-2'>Date</div>
-            <div class='col-sm-1'>Atty</div>
-            <div class='col-sm-2'>Action</div>
-            <div class='col-sm-3'>Description</div>
-            <div class='col-sm-1'>Hourly Rate</div>
-            <div class='col-sm-1'>Time</div>
-            <div class='col-sm-1'>Amount</div>
-            <div class='col-sm-1'>Slip Total</div>
-        </div>
+    <table class="table" id="test">
+        <thead>
+        <tr>
+            <th scope="col">SlipID</th>
+            <th scope="col">caseID</th>
+            <th scope="col">actionID</th>
+            <th scope="col">date</th>
+            <th scope="col">attorney</th>
+            <th scope="col">action</th>
+            <th scope="col">description</th>
+            <th scope="col">hourly rate</th>
+            <th scope="col">time</th>
+            <th scope="col">slip total</th>
+            <th scope="col">delete</th>
+        </tr>
+        </thead>
+        <tbody>
         <?php
 
         //Define a query
-        $sql = "SELECT * FROM `Cases`"; //going to have to write a join select and update
+        $sql = "SELECT * FROM `slips`"; //going to have to write a join select and update
 
         //Send the query to the db
         $result = mysqli_query($cnxn, $sql);
         //var_dump($result);
 
         foreach ($result as $row) {
-            $date = $row['caseName'];
-            $atty = $row['AttorneyID'];
-            $action = $row['caseName'];
-            $description = $row['caseName'];
-            $hourlyRate = $row['caseName'];
-            $time = $row['caseName'];
-            $amount = $row['caseName'];
-            $slipTotal = $row['caseName'];
+            $slipID = $row['slipID'];
+            $caseID = $row['caseID'];
+            $actionID = $row['actionID'];
+            $date = $row['date_'];
+            $atty = $row['attorneyID'];
+            $action = $row['actionID'];
+            $description = $row['description'];
+            $hourlyRate = $row['hourlyRate'];
+            $time = $row['timeSpent'];
+            $slipTotal = $row['total'];
             echo "
-            
-        <div class='row'>
-            <div class='col-sm-2'>
-                <input type='text' class='form-control' id='date' name='date' value='$date'>
-            </div>
-            <div class='col-sm-1'>
-                   <input type='text' class='form-control' id='atty' name='atty' value='$atty'>
-            </div>
-            <div class='col-sm-2'>
-                <input type='text' class='form-control' id='action' name='action' value='$action'>
-            </div>
-            <div class='col-sm-3'>
-                <input type='text' class='form-control' id='description' name='description' value='$description'>
-            </div>
-            <div class='col-sm-1'>
-                <input type='text' class='form-control' id='checkNo' name='checkNo' value='$hourlyRate'>
-            </div>
-            <div class='col-sm-1'>
-                <input type='text' class='form-control' id='amount' name='amount' value='$time'>
-            </div>
-            <div class='col-sm-1'>
-                <input type='text' class='form-control' id='amount' name='amount' value='$amount'>
-            </div>
-            <div class='col-sm-1'>
-                <input type='text' class='form-control' id='amount' name='amount' value='$slipTotal'>
-            </div>
-        </div>
-";
+            <tr>
+                <td><a href='newSlip.php?slipID=$slipID'>$slipID</td>
+                <td>$caseID</td>
+                <td>$actionID</td>
+                <td>$date</td>
+                <td>$atty</td>
+                <td>$action</td>
+                <td>$description</td>
+                <td>$hourlyRate</td>
+                <td>$time</td>
+                <td>$slipTotal</td>
+                <td><a href='requires/OwnerTabs/newAction.php?actionID=$actionID&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
+            </tr>";
         }
         ?>
-
-        <div class="row">
-            <div class="col-sm-2">
-                <label>timeTotal</label>
-                <p></p>
-            </div>
-            <div class="col-sm-2">
-                <label>costTotal</label>
-                <p></p>
-            </div>
-        </div>
-        <label>Confirm changes?</label>
-        <input type="checkbox" name=\"confirmBox\" id=\"confirmBox\">
-        <br>
-        <button type="submit">Save</button>
-    </fieldset>
-</form>
+        </tbody>
+    </table>
+    <a href="http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/caseTabs/newSlip.php">Add a Slip</a>
+</div>

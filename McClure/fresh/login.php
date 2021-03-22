@@ -53,7 +53,7 @@ if(!empty($_POST)){
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../../CapstoneProject(old)/style.css">
     <link rel="stylesheet" href="bootstrap/css/blog-post.css">
     <style>
         .err {

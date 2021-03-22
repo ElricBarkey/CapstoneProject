@@ -8,10 +8,32 @@ if($_POST['confirmBox'] == 'on'){
     //var_dump($_POST);
 
     $sql = "UPDATE `clients` SET `lName`='".$_POST['lName']."',`fName`='".$_POST['fName']."',`mName`='".$_POST['mName']."',
-`address1`='".$_POST['street']."',`city`='".$_POST['city']."',`cState`='".$_POST['state']."',`zip`='".$_POST['zip']."',`DOB`='".$_POST['dob']."',`DOD`='".$_POST['dod']."',
-`phoneNum`='".$_POST['contactNumber']."',`contactTitle`='".$_POST['contactTitle']."',`Referral`='".$_POST['referred']."',`sLName`='".$_POST['contactLName']."',
-`sFName`='".$_POST['contactFName']."',`sMName`='".$_POST['contactMName']."', `comments`='".$_POST['aptStart']."'
-WHERE `ClientID`='".$_SESSION['ClientID']."';";
+    `address1`='".$_POST['street']."',`city`='".$_POST['city']."',`cState`='".$_POST['state']."',`zip`='".$_POST['zip']."',`DOB`='".$_POST['dob']."',`DOD`='".$_POST['dod']."',
+    `clientNumber`='".$_POST['contactNumber']."',`contactTitle`='".$_POST['contactTitle']."',`Referral`='".$_POST['referred']."',`sLName`='".$_POST['contactLName']."',
+    `sFName`='".$_POST['contactFName']."',`sMName`='".$_POST['contactMName']."', `comments`='".$_POST['aptStart']."'
+    WHERE `ClientID`='".$_SESSION['ClientID']."';";
+
+    echo '<script>alert("database updated!")</script>';
+    mysqli_query($cnxn, $sql);
+}
+
+if($_POST['createNew'] == 'on'){
+    //var_dump($_POST);
+
+    $sql = "INSERT INTO `clients` (`lName`, `fName`, `mName`, `address1`, `city`, `cState`, `zip`, `DOB`, `DOD`, `clientNumber`,
+    `contactTitle`, `Referral`, `sLName`, `sMName`, `sFName`, `contactName`, `phoneNum`) VALUES ('".$_POST['lName']."', '".$_POST['fName']."',
+     '".$_POST['mName']."','".$_POST['street']."', '".$_POST['city']."', '".$_POST['state']."', '".$_POST['zip']."',
+      '".$_POST['dob']."', '".$_POST['dod']."', '".$_POST['contactNumber']."', '".$_POST['contactTitle']."', '".$_POST['referred']."',
+       '".$_POST['contactLName']."', '".$_POST['contactMName']."', '".$_POST['contactFName']."', '".$_POST['phoneNum']."', '".$_POST['contactName']."');";
+
+    echo '<script>alert("database updated!")</script>';
+    mysqli_query($cnxn, $sql);
+}
+
+if($_POST['delete'] == 'on'){
+    //var_dump($_POST);
+
+    $sql = "DELETE FROM `clients` WHERE ClientID = '".$_SESSION['ClientID']."';";
 
     echo '<script>alert("database updated!")</script>';
     mysqli_query($cnxn, $sql);
@@ -47,23 +69,8 @@ $result = mysqli_query($cnxn, $sql);
         $contactLName = $row['cSLName'];
         $contactTitle = $row['contactTitle'];
         $contactNumber = $row['phoneNum'];
+        $contactName = $row['contactName'];
     }
-}else {
-    $fName = '';
-    $mName = '';
-    $lName = '';
-    $street = '';
-    $city = '';
-    $zip = '';
-    $state = '';
-    $dob = '';
-    $dod = '';
-    $referred = '';
-    $contactFName = '';
-    $contactMName = '';
-    $contactLName = '';
-    $contactTitle = '';
-    $contactNumber = '';
 }
 ?>
 <!-- look into inserting php if-thens into form. Think I can make it tab between forms -->
@@ -124,27 +131,31 @@ $result = mysqli_query($cnxn, $sql);
                             <input type=\"text\" class=\"form-control\" id='referred' name='referred' value=\"$referred\">
                          </div>
                          <div class='col-sm-2'>
-                            <label for='conctactName'>Contact Name</label>
+                            <label for='conctactName'>Spouse First Name</label>
                             <input type=\"text\" class=\"form-control\" id='contactFName' name='contactFName' value=\"$contactFName\">
                          </div>
                          <div class='col-sm-2'>
-                            <label for='conctactName'>Contact Name</label>
+                            <label for='conctactName'>Spouse Middle Name</label>
                             <input type=\"text\" class=\"form-control\" id='contactMName' name='contactMName' value=\"$contactMName\">
                          </div>
                          <div class='col-sm-2'>
-                            <label for='conctactName'>Contact Name</label>
+                            <label for='conctactName'>Spouse Last Name</label>
                             <input type=\"text\" class=\"form-control\" id='contactLName' name='contactLName' value=\"$contactLName\">
                          </div>
                       </div>
                       
                       <div style='' class='row'>
-                         <div class='col-sm-6'>
+                         <div class='col-sm-4'>
                             <label for='firstName'>Contact Title</label>
                             <input type=\"text\" class=\"form-control\" id='contactTitle' name='contactTitle' value=\"$contactTitle\">
                          </div>
-                         <div class='col-sm-6'>
+                         <div class='col-sm-4'>
                             <label for='firstName'>Contact Number</label>
                             <input type=\"text\" class=\"form-control\" id='contactNumber' name='contactNumber' value=\"$contactNumber\">
+                         </div>
+                         <div class='col-sm-4'>
+                            <label for='firstName'>Contact Name</label>
+                            <input type=\"text\" class=\"form-control\" id='contactName' name='contactName' value=\"$contactName\">
                          </div>
                       </div>
                       
@@ -166,6 +177,21 @@ $result = mysqli_query($cnxn, $sql);
             <label>Confirm changes?</label>
             <input type="checkbox" name="confirmBox" id="confirmBox">
             <br>
+
+            <label>Create New?</label>
+            <input type="checkbox" name="createNew" id="createNew">
+            <br>
+
+            <?php
+            if($_SESSION['ClientID']){
+                echo "
+                    <label>Delete?</label>
+                    <input type=\"checkbox\" name=\"delete\" id=\"delete\">
+                    <br>
+                ";
+            }
+            ?>
+
             <button type="submit">Save</button>
         </fieldset>
 </form>

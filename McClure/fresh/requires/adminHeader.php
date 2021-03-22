@@ -15,8 +15,8 @@ session_start();
 
     <title>Simple Sidebar - Start Bootstrap Template</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 
     <!--<link rel="stylesheet" href="styles/bootstrap.css">
     <link rel="stylesheet" href=styles/bootstrap-grid.css>

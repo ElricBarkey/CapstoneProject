@@ -4,23 +4,10 @@
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
 
-//check if information was edited
-if($_POST['confirmBox'] == 'on'){
-    //var_dump($_POST);
-
-    $sql = "UPDATE `contacts` SET `preferred`='".$_POST['contactType']."',`phone`='".$_POST['number']."' WHERE `clientID`='".$_SESSION['ClientID']."';";
-    echo '<script>alert("database updated!")</script>';
-    echo $sql;
-    mysqli_query($cnxn, $sql);
-
-    if($_POST['newNumber'] != 'newNumber' && $_POST['newContactType'] != 'newContactType'){
-        $sql = "INSERT INTO `contacts`(`ID`, `CaseID`, `description`) VALUES ('"."', '"."', '".$_POST['newContactType'].$_POST['newNumber']."');";
-    }
-}
-
 //Define a query
 if((isset($_SESSION['fSearch'])) && isset($_SESSION['lSearch'])) {
     $sql = "SELECT `ClientID` FROM `clients` WHERE `fName` = '" . $_SESSION['fSearch'] . "' AND `lName` = '" . $_SESSION['lSearch'] . "';";
+    //echo $sql;
     $result = mysqli_query($cnxn, $sql);
     foreach ($result as $row) {
         $_SESSION['ClientID'] = $row['ClientID'];
@@ -33,58 +20,35 @@ $sql = "SELECT * FROM contacts WHERE `clientID`='".$_SESSION['ClientID']."';";
 $result = mysqli_query($cnxn, $sql);
 
 ?>
-
-<form id="form" method="post" action="#">
-    <!-- Contact Information -->
-    <fieldset id="#p" class="form-group"><!-- gets first name, last name, and email -->
-        <legend>Contact Info</legend>
-        <div class='row'>
-            <div class='col-sm-6'>
-                <p>Contact Type</p>
-            </div>
-            <div class='col-sm-6'>
-                <p>Contact</p>
-            </div>
-        </div>
+<div id="main" class="container">
+    <table class="table" id="test">
+    <thead>
+        <tr>
+            <th scope="col">ContactID</th>
+            <th scope="col">Contact Type</th>
+            <th scope="col">Contact</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+        <tbody>
         <?php
             foreach ($result as $row) {
+                $contactID = $row['contactID'];
                 $contactType = $row['preferred'];
                 $number = $row['phone'];
 
                 echo "
-                    <div style='' class='row'>
-                        <div class='col-sm-6'>
-                            <input type=\"text\" class=\"form-control\" id=\"contactType\" name=\"contactType\" value=\"$contactType\">
-                        </div>
-                        <div class='col-sm-6'>
-                            <input type=\"text\" class=\"form-control\" id=\"number\" name=\"number\" value=\"$number\">
-                        </div>
-                    </div>";
+                    <tr>
+                        <td><a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/newPhone.php?subCategoryID=$contactID'>$contactID</td>
+                        <td>$contactType</td>
+                        <td>$number</td>
+                        <td><a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/newPhone.php?subCategoryID=$contactID&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
+                    </tr>";
             }
         ?>
-        <hr>
-
-        <div style='' class='row'>
-            <div class='col-sm-6'>
-                <input type="text" class="form-control" id="$newContactType" name="newContactType" value="newContactType">
-            </div>
-            <div class='col-sm-6'>
-                <input type="text" class="form-control" id="newNumber" name="newNumber" value="newNumber">
-            </div>
-        </div>
-
-        <label>Confirm changes?</label>
-        <input type="checkbox" name="confirmBox" id="confirmBox">
-        <br>
-        <div class="row">
-            <div class="col-sm-6">
-                <button type="submit">Save</button>
-            </div>
-            <div class="col-sm-6">
-                <!--<button type="submit"><a href=""></a></button>-->
-            </div>
-        </div>
-    </fieldset>
-</form>
+        </tbody>
+</table>
+<a href="http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/newPhone.php">Add a contact</a>
+</div>
 
 

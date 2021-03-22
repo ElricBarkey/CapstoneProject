@@ -1,118 +1,69 @@
 <?php
-
-//check if information was edited
-if($_POST['confirmBox'] == 'on'){
-    //var_dump($_POST);
-
-    $sql = "UPDATE `activities` SET `date_`='".$_POST['date']."',`timeSpent`='".$_POST['time']."',`attorney`='".$_POST['atty']."',
-`actionID`='".$_POST['action']."',`notes`='".$_POST['notes']."'
-WHERE `clientID`='".$_SESSION['ClientID']."' AND `caseID`='".$_SESSION['caseID']."';";
-
-    echo '<script>alert("database updated!")</script>';
-    echo $sql;
-    mysqli_query($cnxn, $sql);
-}
-?>
-<!-- look into inserting php if-thens into form. Think I can make it tab
- between forms -->
-
-<form id="form" method="post" action="#">
-    <!-- Contact Information -->
-    <fieldset id="#a" class="form-group"><!-- gets first name, last name, and email -->
-        <legend>Activities</legend>
-        <div class='row'>
-            <div class='col-sm-2'>
-                <p>Date/Time</p>
-            </div>
-            <div class='col-sm-2'>
-                <p>Atty/Action</p>
-            </div>
-            <div class='col-sm-8'>
-                <p>Activity Note</p>
-            </div>
-        </div>
-
-
-        <?php
-        //var_dump($_POST);
-        //Define a query
-        if((isset($_SESSION['fSearch'])) && isset($_SESSION['lSearch'])) {
-            $sql = "SELECT `ClientID` FROM clients WHERE `fName` = '" . $_SESSION['fSearch'] . "' AND `lName` = '" . $_SESSION['lSearch'] . "';";
-            $result = mysqli_query($cnxn, $sql);
-            foreach ($result as $row) {
-                $_SESSION['ClientID'] = $row['ClientID'];
-            }
-        }
-
-        //Define a query
-        $sql = "SELECT * FROM activities WHERE `clientID`='".$_SESSION['ClientID']."';";
-        //echo $sql;
+session_start();
+//Define a query
+        $sql = "SELECT * FROM activities WHERE `caseID`='".$_SESSION['caseID']."';";
         //Send the query to the db
         $result = mysqli_query($cnxn, $sql);
         //var_dump($result);
 
+?>
+<!-- look into inserting php if-thens into form. Think I can make it tab
+ between forms -->
+
+    <!-- Contact Information -->
+<div id="main" class="container"><!-- gets first name, last name, and email -->
+    <table class="table" id="test">
+        <thead>
+        <tr>
+            <th scope="col">activityID</th>
+            <th scope="col">caseID</th>
+            <th scope="col">clientID</th>
+            <th scope="col">date</th>
+            <th scope="col">attorney</th>
+            <th scope="col">actionID</th>
+            <th scope="col">Hourly Rate</th>
+            <th scope="col">Time Spent</th>
+            <th scope="col">total</th>
+            <th scope="col">case check</th>
+            <th scope="col">notes</th>
+            <th scope="col">delete</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <?php
         foreach ($result as $row) {
-            $_SESSION['caseID'] = $row['caseID'];
+            $activityID = $row['activityID'];
+            $caseID['caseID'] = $row['caseID'];
+            $clientID['clientID'] = $row['clientID'];
             $date = $row['date_'];
-            $time = $row['timeSpent'];
             $atty = $row['attorney'];
-            $action = $row['actionID'];
-            $note = $row['note'];
+            $actionID = $row['actionID'];
+            $hourlyRate = $row['hourlyRate'];
+            $timeSpent = $row['timeSpent'];
+            $total = $row['total'];
+            $caseCheck = $row['caseCheck'];
+            $notes = $row['notes'];
             echo "
-                <div class='row'>
-                    <div class='col-sm-6'>
-                            <div class='row'>
-                                <div class='col-sm-6'>
-                                    <input type=\"text\" class=\"form-control\" id='date' name='date' value='".$date."'>
-                                </div>
-                                <div class='col-sm-6'>
-                                    <input type=\"text\" class=\"form-control\" id='time' name='time' value='".$time."'>
-                                </div>
-                            </div>
-                            <div class='row'>
-                                <div class='col-sm-6'>
-                                    <input type=\"text\" class=\"form-control\" id='atty' name='atty' value='".$atty."'>
-                                </div>
-                                <div class='col-sm-6'>
-                                    <input type=\"text\" class=\"form-control\" id='action' name='action' value='".$action."'>
-                                </div>
-                            </div>
-                    </div>
-                    <div class='col-sm-6'>
-                        <textarea rows='4' cols='50' id='activity' name='activity'>".$note."
-                        </textarea>
-                    </div>
-                </div>";
+                <tr>
+                    <td><a href='newCaseActivity.php?activityID=$activityID'>$activityID</td>
+                    <td>$activityID</td>
+                    <td>$caseID</td>
+                    <td>$clientID</td>
+                    <td>$date</td>
+                    <td>$atty</td>
+                    <td>$actionID</td>
+                    <td>$hourlyRate</td>
+                    <td>$timeSpent</td>
+                    <td>$total</td>
+                    <td>$caseCheck</td>
+                    <td>$notes</td>
+                    <td><a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/caseTabs/newCaseActivity.php?activityID=$activityID&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
+                </tr>";
         }
         ?>
-        <div class='row'>
-                    <div class='col-sm-6'>
-                            <div class='row'>
-                                <div class='col-sm-6'>
-                                    <input type='text' class='form-control' id='newDate' name='newDate' value='newDate'>
-                                </div>
-                                <div class='col-sm-6'>
-                                    <input type='text' class='form-control' id='newTime' name='newTime' value='newTime'>
-                                </div>
-                            </div>
-                            <div class='row'>
-                                <div class='col-sm-6'>
-                                    <input type='text' class='form-control' id='newAtty' name='newAtty' value='newAtty'>
-                                </div>
-                                <div class='col-sm-6'>
-                                    <input type='text' class='form-control' id='newAction' name='newAction' value='newAction'>
-                                </div>
-                            </div>
-                    </div>
-                    <div class='col-sm-6'>
-                        <textarea rows='4' cols='50' id='activity' name='activity'>newNotes
-                        </textarea>
-                    </div>
-                </div>
-        <label>Confirm changes?</label>
-        <input type="checkbox" name="confirmBox" id="confirmBox">
-        <br>
-        <button type="submit">Save</button>
-    </fieldset>
-</form>
+        </tbody>
+    </table>
+    <a href="http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/caseTabs/newCaseActivity.php">Add a Slip</a>
+</div>
 

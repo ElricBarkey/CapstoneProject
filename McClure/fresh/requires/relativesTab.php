@@ -1,105 +1,88 @@
 <?php
-
+//var_dump($_SESSION);
 //Turn on error reporting
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
+//Define a query
 
-if($_POST['confirmBox'] == 'on'){
+$sql = "SELECT * FROM clients WHERE `clientID`='".$_SESSION['ClientID']."';";
+//Send the query to the db
+$result = mysqli_query($cnxn, $sql);
 
-    $sql = "UPDATE `relatives` SET `lName`='".$_POST['lName']."',`fName`='".$_POST['fName']."',
-    `relationship`='".$_POST['relationship']."',`comment_`='".$_POST['notes']."' 
-    WHERE `clientID`='".$_SESSION['ClientID']."';";
-    echo '<script>alert("database updated!")</script>';
-    echo $sql;
-    mysqli_query($cnxn, $sql);
+$sql = "SELECT * FROM relatives WHERE `clientID`='".$_SESSION['ClientID']."';";
 
-    if($_POST['newNumber'] != 'newNumber' && $_POST['newContactType'] != 'newContactType'){
-        $sql = "INSERT INTO `contacts`(`ID`, `CaseID`, `description`) VALUES ('"."', '"."', '".$_POST['newContactType'].$_POST['newNumber']."');";
-    }
-}
+//Send the query to the db
+$result = mysqli_query($cnxn, $sql);
+//var_dump($result);
+
 ?>
 <!-- look into inserting php if-thens into form. Think I can make it tab between forms -->
 
-<form id="form" method="post" action="#">
+<div id="main" class="container">
     <!-- Contact Information -->
-    <fieldset id="#r" class="form-group"><!-- gets first name, last name, and email -->
-        <legend>Relatives</legend>
-        <div class='row'>
-            <div class='col-sm-3'>
-                <p>Last Name</p>
-            </div>
-            <div class='col-sm-3'>
-                <p>First Name</p>
-            </div>
-            <div class='col-sm-3'>
-                <p>Relationship</p>
-            </div>
-            <div class='col-sm-3'>
-                <p>notes</p>
-            </div>
-        </div>
+    <table class="table" id="test"><!-- gets first name, last name, and email -->
+        <thead>
+        <tr>
+            <th scope="col">relativeID</th>
+            <th scope="col">clientID</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Middle Name</th>
+            <th scope="col">suffix</th>
+            <th scope="col">preferred</th>
+            <th scope="col">address1</th>
+            <th scope="col">address2</th>
+            <th scope="col">city</th>
+            <th scope="col">state</th>
+            <th scope="col">zip</th>
+            <th scope="col">phone</th>
+            <th scope="col">relationship</th>
+            <th scope="col">comment_</th>
+            <th scope="col">delete</th>
+        </tr>
+        </thead>
+        <tbody>
         <?php
-        //Define a query
-        if((isset($_SESSION['fSearch'])) && isset($_SESSION['lSearch'])) {
-            $sql = "SELECT `clientID` FROM clients WHERE `fName` = '" . $_SESSION['fSearch'] . "' AND `lName` = '" . $_SESSION['lSearch'] . "';";
-            $result = mysqli_query($cnxn, $sql);
-            foreach ($result as $row) {
-                $_SESSION['ClientID'] = $row['ClientID'];
-            }
-        }
-
-        $sql = "SELECT * FROM clients WHERE `clientID`='".$_SESSION['ClientID']."';";
-        //Send the query to the db
-        $result = mysqli_query($cnxn, $sql);
-
-        $sql = "SELECT * FROM relatives WHERE `clientID`='".$_SESSION['ClientID']."';";
-
-        //Send the query to the db
-        $result = mysqli_query($cnxn, $sql);
-        //var_dump($result);
 
         foreach ($result as $row) {
-            $lastName = $row['lName'];
-            $firstName = $row['fName'];
+            $relativeID = $row['relativeID'];
+            $clientID = $row['clientID'];
+            $lName = $row['lName'];
+            $fName = $row['fName'];
+            $mName = $row['mName'];
+            $suffix = $row['suffix'];
+            $preferred = $row['preferred'];
+            $address1 = $row['address1'];
+            $address2 = $row['address2'];
+            $city = $row['city'];
+            $state = $row['state'];
+            $zip = $row['zip'];
+            $phone = $row['phone'];
             $relationship = $row['relationship'];
-            $comment = $row['comment_'];
+            $comment_ = $row['comment_'];
 
             echo "
-                <div class='row'>
-                    <div class='col-sm-3'>
-                        <input type=\"text\" class=\"form - control\" id=\"lName\" name=\"lName\" value=\"$lastName\">
-                    </div>
-                    <div class='col-sm-3'>
-                        <input type=\"text\" class=\"form - control\" id=\"fName\" name=\"fName\" value=\"$firstName\">
-                    </div>
-                    <div class='col-sm-3'>
-                        <input type=\"text\" class=\"form - control\" id=\"relationship\" name=\"relationship\" value=\"$relationship\">
-                    </div>
-                    <div class='col-sm-3'>
-                        <textarea rows='4' cols='30'>$comment</textarea>
-                    </div>
-                </div>";
+                <tr>
+                    <td><a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/newRelative.php?actionID=$relativeID'>$relativeID</td>
+                    <td>$clientID</td>
+                    <td>$lName</td>
+                    <td>$fName</td>
+                    <td>$mName</td>
+                    <td>$suffix</td>
+                    <td>$preferred</td>
+                    <td>$address1</td>
+                    <td>$address2</td>
+                    <td>$city</td>
+                    <td>$state</td>
+                    <td>$zip</td>
+                    <td>$phone</td>
+                    <td>$relationship</td>
+                    <td>$comment_</td>
+                    <td><a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/newRelative.php?actionID=$relativeID&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
+                </tr>";
         }
         ?>
-        <hr>
-        <div style='' class='row'>
-            <div class='col-sm-3'>
-                <input type="text" class="form-control" id="newLastName" name="newLastName" value="newLastName">
-            </div>
-            <div class='col-sm-3'>
-                <input type="text" class="form-control" id="newFirstName" name="newFirstName" value="newFirstName">
-            </div>
-            <div class='col-sm-3'>
-                <input type="text" class="form-control" id="newRelationship" name="newRelationship" value="newRelationship">
-            </div>
-            <div class='col-sm-3'>
-                <textarea rows='4' cols='30'>
-                </textarea>
-            </div>
-        </div>
-        <label>Confirm changes?</label>
-        <input type="checkbox" name="confirmBox" id="confirmBox">
-        <br>
-        <button type="submit">Save</button>
-    </fieldset>
-</form>
+        </tbody>
+    </table>
+    <a href="http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/newRelative.php">Add an action</a>
+</div>
