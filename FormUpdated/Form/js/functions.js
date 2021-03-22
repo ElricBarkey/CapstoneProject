@@ -1,17 +1,6 @@
-/*
-$(document).ready(function(){
-    $("#boxchecked").click(function (){
-        if ($("#boxchecked").prop("checked")){
-            $("#hidden").show();
-        }else{
-            $("#hidden").hide();
-        }
-    });
-});
-*/
 
 $("#hidden").hide();
-
+//show and hide spouse information
 $(document).ready(function(){
     $("#spouseYes").click(function (){
         if ($("#spouseYes").prop("checked")){
@@ -21,7 +10,6 @@ $(document).ready(function(){
         }
     });
 });
-
 
 
 $(document).ready(function(){

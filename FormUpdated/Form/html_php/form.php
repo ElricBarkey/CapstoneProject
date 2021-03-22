@@ -9,21 +9,26 @@
   <meta name="author" content="">
 
   <title>Client Form</title>
+  <!-- jQuery
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+    -->
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="css/blog-post.css" rel="stylesheet">
+  <!-- Bootstrap core CSS-->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- My css -->
-  <link href="css/stylesForm.css" rel="stylesheet">
+  <link href="../css/stylesForm.css" rel="stylesheet">
 
 </head>
 
 <body>
-<div id="main" class="container">
 
+<?php
+include("../includes/header.php");
+?>
+<div id="main" class="container">
   <form id="myForm" action="confirmForm.php" method="post">
     <!-- Contact Information -->
     <fieldset class="form-group">
@@ -57,7 +62,7 @@
 
         <label for="phoneNum">Phone Number</label>
         <input placeholder="Your Phone Number (required)" type="text" class="form-control" id="phoneNum" name="phoneNum" >
-        <span class="err" id="errPhoneNum">Please enter your phone number</span>
+        <span class="err" id="errPhoneNum">Please enter your phone number (format 123 456 7890)</span>
         <br>
 
         <label for="address">Address</label>
@@ -80,7 +85,7 @@
         <span class="err" id="errZip">Please enter your zip in format 00000</span>
       </div>
 
-
+        <!-- Married check -->
       <p>Are you Legally Married? (required)</p>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="married" id="marriedYes" value="yes">
@@ -154,7 +159,7 @@
 
           <label for="sPhoneNum">Spouse Phone Number</label>
           <input placeholder="Spouse Phone Number 123-456-7890" type="text" class="form-control" id="sPhoneNum" name="sPhoneNum" >
-          <span class="err" id="errSPhoneNum">Please enter your spouse's phone number</span>
+          <span class="err" id="errSPhoneNum">Please enter your spouse's phone number (format 123 456 7890)</span>
           <br>
 
           <label for="sAddress">Spouse Address</label>
@@ -201,20 +206,28 @@
         <textarea class="form-control" id="message" name="message" ></textarea>
       </div>
 
+
     </fieldset>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
   <br>
   <br>
+    <!-- invis field for reroute -->
+    <label for="un"></label>
+    <input hidden type="text" class="form-control" id="un" name="un" value="hi">
 </div>
 
+<?php
+    include("../includes/footer.php");
+?>
 
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="functions.js"></script>
-  <script src="form.js"></script>
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/functions.js"></script>
+  <script src="../js/form.js"></script>
+  <script src="../js/navFunctions.js"></script>
 
 </body>
 
