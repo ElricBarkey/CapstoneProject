@@ -1,4 +1,5 @@
 <?php
+session_start();
 //Turn on error reporting -- this is critical!
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
@@ -113,11 +114,6 @@ if(!empty($_GET['attorneyID']) && (!empty($_GET['delete']))){
 
     <form id="student-form" action=<?php echo $url ?> method="post">
 
-        <div class="form-group">
-            <label for="actionID">ID</label>
-            <input type="text" class="form-control"
-                   id="attorneyID" name="attorneyID" value="<?php echo $attyID ?>">
-        </div>
         <div class="form-group">
             <label for="actionName">First name</label>
             <input type="text" class="form-control"

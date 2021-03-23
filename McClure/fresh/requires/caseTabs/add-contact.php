@@ -31,7 +31,7 @@ if(isset($_GET['action'])){
     $sql = "UPDATE contacts
             SET caseID='$caseID', clientID='$clientID', preferred='$preferred', phone='$phone', email='$email'
             , name='$name', description='$description'
-            WHERE contactID='$contactID'";
+            WHERE contactID='".$_SESSION['contactID']."'";
 }
 else {
 //Write an SQL statement

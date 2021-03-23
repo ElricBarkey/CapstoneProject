@@ -1,4 +1,5 @@
 <?php
+session_start();
 //Turn on error reporting -- this is critical!
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
@@ -85,11 +86,6 @@ echo $sql;
 
     <form id="student-form" action=<?php echo $url ?> method="post">
 
-        <div class="form-group">
-            <label for="keyID">keyID</label>
-            <input type="text" class="form-control"
-                   id="keyID" name="keyID" value="<?php echo $keyID ?>">
-        </div>
         <div class="form-group">
             <label for="caseID">CaseID</label>
             <input type="text" class="form-control"

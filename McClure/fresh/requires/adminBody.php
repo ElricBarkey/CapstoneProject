@@ -50,7 +50,7 @@
             echo "
                 <div class=\"container-fluid\" id=\"tableTest\">
                     <div>
-                        <a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/index.php?tab=general'>General</a>|
+                        <a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/index.php?tab=general'>ClientGeneral</a>|
                         <a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/index.php?tab=phones'>phones</a>|
                         <a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/index.php?tab=notes'>Notes</a>|
                         <a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/index.php?tab=relatives'>Relatives</a>|

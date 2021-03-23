@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 //Define a query
 $sql = "SELECT * FROM `subCategory`;";
 //echo $sql;
@@ -27,17 +27,17 @@ $result = mysqli_query($cnxn, $sql);
         <?php
 
         foreach ($result as $row) {
-            $categoryID = $row['categoryID'];
+            $_SESSION['subCatID'] = $row['categoryID'];
             $subCategoryID = $row['subCategoryID'];
             $categoryName = $row['subCategoryName'];
             $actionDescription = $row['subCategoryDescription'];
             echo "
                 <tr>
-                    <td><a href='requires/OwnerTabs/newSubCategory.php?subCategoryID=$subCategoryID'>$subCategoryID</td>
+                    <td><a href='requires/OwnerTabs/newSubCategory.php?subCategoryID=".$_SESSION['subCatID']."'>".$_SESSION['subCatID']."</td>
                     <td>$categoryID</td>
                     <td>$categoryName</td>
                     <td>$actionDescription</td>
-                    <td><a href='requires/OwnerTabs/newSubCategory.php?subCategoryID=$subCategoryID&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
+                    <td><a href='requires/OwnerTabs/newSubCategory.php?subCategoryID=".$_SESSION['subCatID']."&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
                 </tr>";
         }
         ?>

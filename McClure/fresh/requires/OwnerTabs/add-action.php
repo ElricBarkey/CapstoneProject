@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 //Turn on error reporting -- this is critical!
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
@@ -44,7 +44,7 @@ $actionDescription = mysqli_real_escape_string($cnxn, $_POST['actionDescription'
 if(isset($_GET['action'])){
     $sql = "UPDATE actions
             SET actionName='$actionName', actionDescription='$actionDescription'
-            WHERE actionID='$actionID'";
+            WHERE actionID='".$_SESSION['actionID']."'";
 }
 else {
 //Write an SQL statement

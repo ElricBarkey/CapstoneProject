@@ -33,7 +33,7 @@ session_start();
 
         <?php
         foreach ($result as $row) {
-            $activityID = $row['activityID'];
+            $_SESSION['activityID'] = $row['activityID'];
             $caseID['caseID'] = $row['caseID'];
             $clientID['clientID'] = $row['clientID'];
             $date = $row['date_'];
@@ -46,7 +46,7 @@ session_start();
             $notes = $row['notes'];
             echo "
                 <tr>
-                    <td><a href='newCaseActivity.php?activityID=$activityID'>$activityID</td>
+                    <td><a href='newCaseActivity.php?activityID=".$_SESSION['activityID']."'>".$_SESSION['activityID']."</td>
                     <td>$activityID</td>
                     <td>$caseID</td>
                     <td>$clientID</td>
@@ -58,9 +58,8 @@ session_start();
                     <td>$total</td>
                     <td>$caseCheck</td>
                     <td>$notes</td>
-                    <td><a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/caseTabs/newCaseActivity.php?activityID=$activityID&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
-                </tr>";
-        }
+                    <td><a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/caseTabs/newCaseActivity.php?activityID=".$_SESSION['activityID']."&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
+                </tr>";}
         ?>
         </tbody>
     </table>

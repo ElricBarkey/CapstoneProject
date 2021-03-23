@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 //Turn on error reporting
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
@@ -33,16 +33,16 @@ $result = mysqli_query($cnxn, $sql);
         <tbody>
         <?php
             foreach ($result as $row) {
-                $contactID = $row['contactID'];
+                $_SESSION['contactID'] = $row['contactID'];
                 $contactType = $row['preferred'];
                 $number = $row['phone'];
 
                 echo "
                     <tr>
-                        <td><a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/newPhone.php?subCategoryID=$contactID'>$contactID</td>
+                        <td><a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/newPhone.php?subCategoryID=".$_SESSION['contactID']."'>".$_SESSION['contactID']."</td>
                         <td>$contactType</td>
                         <td>$number</td>
-                        <td><a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/newPhone.php?subCategoryID=$contactID&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
+                        <td><a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/newPhone.php?subCategoryID=".$_SESSION['contactID']."&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
                     </tr>";
             }
         ?>

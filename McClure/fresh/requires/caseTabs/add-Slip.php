@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 //Turn on error reporting -- this is critical!
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
@@ -30,14 +30,14 @@ if(isset($_GET['action'])){
     $sql = "UPDATE slips
             SET actionID='$actionID', attorneyID='$attorneyID', date_='$date', hourlyRate='$rate', timeSpent='$timeSpent'
             , total='$total', description='$description'
-            WHERE actionID='$actionID'";
+            WHERE slipID='".$_SESSION['slipID']."'";
 }
 else {
 //Write an SQL statement
     $sql = "INSERT INTO slips (`actionID`,`attorneyID`,`date_`,`hourlyRate`,`timeSpent`,`total`,`description`)
         VALUES ('$actionID', '$attorneyID', '$date', '$rate', '$timeSpent', '$total', '$description')";
 }
-//echo $sql;
+echo $sql;
 
 //Send the query to the database
 $result = mysqli_query($cnxn, $sql);

@@ -1,4 +1,5 @@
 <?php
+session_start();
 //Turn on error reporting -- this is critical!
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
@@ -78,7 +79,7 @@ if(!empty($_GET['subCategoryID']) && (!empty($_GET['delete']))){
 <div class="container">
     <?php
     $text = $action == "add" ? "Add a new " : "Edit ";
-    echo "<h3>$text Action</h3>";
+    echo "<h3>$text Activity</h3>";
 
     $url = "add-Activity.php";
     if($action == 'edit'){
@@ -88,11 +89,6 @@ if(!empty($_GET['subCategoryID']) && (!empty($_GET['delete']))){
 
     <form id="student-form" action=<?php echo $url ?> method="post">
 
-        <div class="form-group">
-            <label for="activityID">ActivityID</label>
-            <input type="text" class="form-control"
-                   id="activityID" name="activityID" value="<?php echo $clientID ?>">
-        </div>
         <div class="form-group">
             <label for="activityID">clientID</label>
             <input type="text" class="form-control"
@@ -111,7 +107,7 @@ if(!empty($_GET['subCategoryID']) && (!empty($_GET['delete']))){
         <div class="form-group">
             <label for="Attorney">Attorney</label>
             <select id="Attorney" name="Attorney">
-                <option value="none">--Select--</option>
+                <option value="0">--Select--</option>
 
                 <?php
 
@@ -146,12 +142,12 @@ if(!empty($_GET['subCategoryID']) && (!empty($_GET['delete']))){
         <div class="form-group">
             <label for="Action">Action</label>
             <select id="Action" name="Action">
-                <option value="none">--Select--</option>
+                <option value="0">--Select--</option>
 
                 <?php
 
                 //Write query
-                $sql = "SELECT actionID as actionID, actionName as actionName
+                $sql = "SELECT actionID as ID, actionName as actionName
                             FROM actions";
                 //Send query to database and get result
                 $result = mysqli_query($cnxn, $sql);
@@ -160,14 +156,14 @@ if(!empty($_GET['subCategoryID']) && (!empty($_GET['delete']))){
                 foreach ($result as $row) {
 
                     //Get the row data
-                    $action_ID = $row['actionID'];
+                    $ID = $row['ID'];
                     $actionName = $row['actionName'];
 
-                    echo "<option value='$action_ID' ";
+                    echo "<option value='$actionID' ";
 
                     //If this is the advisor of the student
                     //being updated, select it
-                    if($action_ID == $actionID){
+                    if($ID == $actionID){
                         echo "selected";
                     }
                     echo ">".$actionName."</option>";
@@ -211,7 +207,7 @@ if(!empty($_GET['subCategoryID']) && (!empty($_GET['delete']))){
     <?php
         echo$sql;
     ?>
-    <a href="requires/index.php?&tab=activities">View activities</a>
+    <a href="http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/index.php?tab=activities?&tab=activities">View activities</a>
 </div>
 
 <script src="//code.jquery.com/jquery-3.3.1.slim.min.js"></script>

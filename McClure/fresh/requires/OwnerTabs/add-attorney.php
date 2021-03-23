@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 //Turn on error reporting -- this is critical!
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
@@ -47,7 +47,7 @@ if(isset($_GET['action'])){
             , atAddress1='$atAddress1', atAddress2='$atAddress2', atCity='$atCity'
             , atState='$atState', atZip='$atZip', phone='$phone'
             , email='$email', notes='$notes', hourlyRate='$hourlyRate'
-            , reportsTo='$reportsTo' WHERE attorneyID='$attorneyID'";
+            , reportsTo='$reportsTo' WHERE attorneyID='".$_SESSION['attyID']."'";
 }
 else {
 //Write an SQL statement

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 //Turn on error reporting -- this is critical!
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
@@ -45,7 +45,7 @@ $subCategoryDescription = mysqli_real_escape_string($cnxn, $_POST['subCategoryDe
 if(isset($_GET['action'])){
     $sql = "UPDATE subCategory
             SET categoryID='$categoryID', subCategoryName='$subCategoryName', subCategoryDescription='$subCategoryDescription'
-            WHERE subCategoryID='$subCategoryID'";
+            WHERE subCategoryID='".$_SESSION['subCatID']."'";
 }
 else {
 //Write an SQL statement

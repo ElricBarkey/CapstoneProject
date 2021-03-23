@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 
 ?>
 <div id="main" class="container">
@@ -30,7 +30,7 @@
         //var_dump($result);
 
         foreach ($result as $row) {
-            $keyID = $row['keyDate'];
+            $_SESSION['keyID'] = $row['keyDate'];
             $caseID = $row['caseID'];
             $keyDate = $row['date_'];
             $keyNote = $row['note'];
@@ -42,7 +42,7 @@
             echo "
             
         <tr>
-            <td><a href='newKeyDate.php?keyID=$keyID'>$keyID</td>
+            <td><a href='newKeyDate.php?keyID=".$_SESSION['keyID']."'>".$_SESSION['keyID']."</td>
             <td>$caseID</td>
             <td>$keyDate</td>
             <td>$keyNote</td>
@@ -51,7 +51,7 @@
             <td>$done</td>
             <td>$by</td>
             <td>$when</td>
-            <td><a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/caseTabs/newKeyDate.php?keyID=$keyID&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
+            <td><a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/caseTabs/newKeyDate.php?keyID=".$_SESSION['keyID']."&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
         </tr>
 ";
         }

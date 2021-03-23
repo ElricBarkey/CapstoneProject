@@ -1,4 +1,5 @@
 <?php
+session_start();
 //Turn on error reporting -- this is critical!
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
@@ -71,11 +72,6 @@ if(!empty($_GET['slipID'])){
     <form id="student-form" action=<?php echo $url ?> method="post">
 
         <div class="form-group">
-            <label for="slipID">SlipID</label>
-            <input type="text" class="form-control"
-                   id="slipID" name="slipID" value="<?php echo $slipID ?>">
-        </div>
-        <div class="form-group">
             <label for="caseID">CaseID</label>
             <input type="text" class="form-control"
                    id="caseID" name="caseID" value="<?php echo $caseID ?>">
@@ -100,7 +96,7 @@ if(!empty($_GET['slipID'])){
                     $action_ID = $row['actionID'];
                     $actionName = $row['actionName'];
 
-                    echo "<option value='$action_ID' ";
+                    echo "<option value='$actionID' ";
 
                     //If this is the advisor of the student
                     //being updated, select it
@@ -136,15 +132,15 @@ if(!empty($_GET['slipID'])){
                 foreach ($result as $row) {
 
                     //Get the row data
-                    $clientID = $row['attorneyID'];
+                    $client_ID = $row['attorneyID'];
                     $fName = $row['first'];
                     $lName = $row['last'];
 
-                    echo "<option value='$clientID' ";
+                    echo "<option value='".$_POST['clientID']."' ";
 
                     //If this is the advisor of the student
                     //being updated, select it
-                    if($clientID == $atty){
+                    if($client_ID == $atty){
                         echo "selected";
                     }
                     echo ">".$lName.", ".$fName."</option>";

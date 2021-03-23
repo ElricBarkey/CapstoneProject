@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 //check if information was edited
 ?>
 <div id="main" class="container">
@@ -31,7 +31,7 @@
         //var_dump($result);
 
         foreach ($result as $row) {
-            $slipID = $row['slipID'];
+            $_SESSION['slipID'] = $row['slipID'];
             $caseID = $row['caseID'];
             $actionID = $row['actionID'];
             $date = $row['date_'];
@@ -43,7 +43,7 @@
             $slipTotal = $row['total'];
             echo "
             <tr>
-                <td><a href='newSlip.php?slipID=$slipID'>$slipID</td>
+                <td><a href='newSlip.php?slipID=".$_SESSION['slipID']."'>".$_SESSION['slipID']."</td>
                 <td>$caseID</td>
                 <td>$actionID</td>
                 <td>$date</td>
@@ -53,7 +53,7 @@
                 <td>$hourlyRate</td>
                 <td>$time</td>
                 <td>$slipTotal</td>
-                <td><a href='requires/OwnerTabs/newAction.php?actionID=$actionID&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
+                <td><a href='requires/OwnerTabs/newAction.php?actionID=".$_SESSION['slipID']."&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
             </tr>";
         }
         ?>

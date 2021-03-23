@@ -35,7 +35,7 @@ if(isset($_GET['action'])){
             SET caseID='$caseID', date_='$date', attorney='$atty', actionID='$actionID'
             , hourlyRate='$hourlyRate', timeSpent='$timeSpent', total='$total', caseCheck='$caseCheck'
             , notes='$notes'
-            WHERE activityID='$activityID'";
+            WHERE activityID='".$_SESSION['activityID']."'";
 }
 else {
 //Write an SQL statement
@@ -44,7 +44,7 @@ else {
         VALUES ('$caseID', '$date', '$atty', '$actionID', '$hourlyRate'
         , '$timeSpent', '$total', '$caseCheck', '$notes')";
 }
-//echo $sql;
+echo $sql;
 
 //Send the query to the database
 $result = mysqli_query($cnxn, $sql);

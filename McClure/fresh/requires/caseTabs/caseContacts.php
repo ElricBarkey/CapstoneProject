@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 //Turn on error reporting
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
@@ -29,7 +29,7 @@ $result = mysqli_query($cnxn, $sql);
         <tbody>
         <?php
         foreach ($result as $row) {
-            $contactID = $row['contactID'];
+            $_SESSION['contactID'] = $row['contactID'];
             $caseID = $row['caseID'];
             $clientID = $row['clientID'];
             $contactType = $row['preferred'];
@@ -40,7 +40,7 @@ $result = mysqli_query($cnxn, $sql);
 
             echo "
                     <tr>
-                        <td><a href='newCaseContact.php?slipID=$contactID'>$contactID</td>
+                        <td><a href='newCaseContact.php?slipID=".$_SESSION['contactID']."'>".$_SESSION['contactID']."</td>
                         <td>$caseID</td>
                         <td>$clientID</td>
                         <td>$contactType</td>
@@ -48,7 +48,7 @@ $result = mysqli_query($cnxn, $sql);
                         <td>$email</td>
                         <td>$name</td>
                         <td>$description</td>
-                        <td><a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/caseTabs/newCaseContact.php?slipID=$contactID&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
+                        <td><a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/caseTabs/newCaseContact.php?slipID=".$_SESSION['contactID']."&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
                     </tr>";
         }
         ?>

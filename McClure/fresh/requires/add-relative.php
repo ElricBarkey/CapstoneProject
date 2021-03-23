@@ -38,7 +38,7 @@ if(isset($_GET['action'])){
             SET clientID='$clientID', lName='$lName', lName='$fName', lName='$mName'
             , lName='$suffix', lName='$preferred', lName='$address1', lName='$address2'
             , lName='$city', lName='$state', lName='$zip', lName='$phone', lName='$relationship', lName='$comment_'
-            WHERE relativeID='$relativeID'";
+            WHERE relativeID='".$_SESSION['relativeID']."'";
 }
 else {
     $clientID = $_SESSION['ClientID'];

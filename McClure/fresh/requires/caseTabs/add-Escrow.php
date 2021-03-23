@@ -30,7 +30,7 @@ if(isset($_GET['action'])){
     $sql = "UPDATE Escrow
             SET attyID='$atty', date_='$date', actionID='$action', description='$description', CheckNo='$checkNo'
             , amount='$amount', caseID='$caseID'
-            WHERE escrowID='$escrowID'";
+            WHERE escrowID='".$_SESSION['escrowID']."'";
 }
 else {
 //Write an SQL statement

@@ -27,7 +27,7 @@ $result = mysqli_query($cnxn, $sql);
 //var_dump($result);
 
 foreach ($result as $row) {
-    $escrowID = $row['escrowID'];
+    $_SESSION['escrowID'] = $row['escrowID'];
     $date = $row['date_'];
     $atty = $row['attyID'];
     $caseID = $row['caseID'];
@@ -37,7 +37,7 @@ foreach ($result as $row) {
     $amount = $row['amount'];
     echo "
         <tr>
-            <td><a href='newEscrow.php?escrowID=$escrowID'>$escrowID</td>
+            <td><a href='newEscrow.php?escrowID=".$_SESSION['escrowID']."'>".$_SESSION['escrowID']."</td>
             <td>$date</td>
             <td>$atty</td>
             <td>$caseID</td>

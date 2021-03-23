@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 //Define a query
 $sql = "SELECT * FROM `actions`;";
 //echo $sql;
@@ -25,15 +25,15 @@ $result = mysqli_query($cnxn, $sql);
             <?php
 
             foreach ($result as $row) {
-                $actionID = $row['actionID'];
+                $_SESSION['actionID'] = $row['actionID'];
                 $actionName = $row['actionName'];
                 $actionDescription = $row['actionDescription'];
                 echo "
                     <tr>
-                        <td><a href='requires/OwnerTabs/newAction.php?actionID=$actionID'>$actionID</td>
+                        <td><a href='requires/OwnerTabs/newAction.php?actionID=".$_SESSION['actionID']."'>".$_SESSION['actionID']."</td>
                         <td>$actionName</td>
                         <td>$actionDescription</td>
-                        <td><a href='requires/OwnerTabs/newAction.php?actionID=$actionID&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
+                        <td><a href='requires/OwnerTabs/newAction.php?actionID=".$_SESSION['actionID']."&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
                     <tr>";
             }
             ?>

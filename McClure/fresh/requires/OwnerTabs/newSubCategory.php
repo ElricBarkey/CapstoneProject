@@ -1,4 +1,5 @@
 <?php
+session_start();
 //Turn on error reporting -- this is critical!
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
@@ -75,11 +76,6 @@ if(!empty($_GET['subCategoryID']) && (!empty($_GET['delete']))){
 
     <form id="student-form" action=<?php echo $url ?> method="post">
 
-        <div class="form-group">
-            <label for="subCategoryIDC">ID</label>
-            <input type="text" class="form-control"
-                   id="subCategoryID" name="subCategoryID" value="<?php echo $subCategoryID ?>">
-        </div>
         <div class="form-group">
             <label for="actionName">Action name</label>
             <input type="text" class="form-control"

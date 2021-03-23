@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 //Define a query
 $sql = "SELECT * FROM `category`;";
 //echo $sql;
@@ -27,15 +27,15 @@ $result = mysqli_query($cnxn, $sql);
         <?php
 
         foreach ($result as $row) {
-            $categoryID = $row['categoryID'];
+            $_SESSION['categoryID'] = $row['categoryID'];
             $categoryName = $row['categoryName'];
             $actionDescription = $row['description'];
             echo "
                 <tr>
-                    <td><a href='requires/OwnerTabs/newCategory.php?categoryID=$categoryID'>$categoryID</td>
+                    <td><a href='requires/OwnerTabs/newCategory.php?categoryID=".$_SESSION['categoryID']."'>".$_SESSION['categoryID']."</td>
                     <td>$categoryName</td>
                     <td>$actionDescription</td>
-                    <td><a href='requires/OwnerTabs/newCategory.php?categoryID=$categoryID&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
+                    <td><a href='requires/OwnerTabs/newCategory.php?categoryID=".$_SESSION['categoryID']."&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
                 </tr>";
         }
         ?>

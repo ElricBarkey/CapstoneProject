@@ -1,4 +1,5 @@
 <?php
+session_start();
 //echo ($_SESSION['ClientID']);
 //var_dump($_POST);
 //Define a query
@@ -30,7 +31,7 @@ $result = mysqli_query($cnxn, $sql);
         <?php
 
         foreach ($result as $row) {
-            $activityID = $row['activityID'];
+            $_SESSION['activityID'] = $row['activityID'];
             $caseID = $row['caseID'];
             $client = $row['clientID'];
             $date = $row['date_'];
@@ -40,7 +41,7 @@ $result = mysqli_query($cnxn, $sql);
             $notes = $row['notes'];
             echo "
                 <tr>
-                    <td><a href='requires/OwnerTabs/newAction.php?actionID=$activityID'>$activityID</td>
+                    <td><a href='requires/OwnerTabs/newAction.php?actionID=".$_SESSION['activityID']."'>".$_SESSION['activityID']."</td>
                     <td>$caseID</td>
                     <td>$clientID</td>
                     <td>$date</td>
@@ -48,7 +49,7 @@ $result = mysqli_query($cnxn, $sql);
                     <td>$atty</td>
                     <td>$action</td>
                     <td>$notes</td>
-                    <td><a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/newClientActivity.php?subCategoryID=$activityID&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
+                    <td><a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/newClientActivity.php?subCategoryID=".$_SESSION['activityID']."&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
                 </tr>";
         }
         ?>

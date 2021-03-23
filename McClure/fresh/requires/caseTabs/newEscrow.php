@@ -1,4 +1,5 @@
 <?php
+session_start();
 //Turn on error reporting -- this is critical!
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
@@ -84,11 +85,6 @@ if(!empty($_GET['escrowID']) && (!empty($_GET['delete']))){
 
     <form id="student-form" action=<?php echo $url ?> method="post">
 
-        <div class="form-group">
-            <label for="escrowID">EscrowID</label>
-            <input type="text" class="form-control"
-                   id="escrowID" name="escrowID" value="<?php echo $escrowID ?>">
-        </div>
         <div class="form-group">
             <label for="date">Date</label>
             <input type="text" class="form-control"
@@ -183,7 +179,7 @@ if(!empty($_GET['escrowID']) && (!empty($_GET['delete']))){
                     $ID = $row['caseID'];
                     $name = $row['caseName'];
 
-                    echo "<option value='$action_ID' ";
+                    echo "<option value='$caseID' ";
 
                     //If this is the advisor of the student
                     //being updated, select it

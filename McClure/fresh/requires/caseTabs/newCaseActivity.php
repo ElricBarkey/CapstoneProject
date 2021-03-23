@@ -1,4 +1,5 @@
 <?php
+session_start();
 //Turn on error reporting -- this is critical!
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
@@ -40,7 +41,7 @@ if(!empty($_GET['activityID'])){
     $caseID['caseID'] = $row['caseID'];
     $clientID['clientID'] = $row['clientID'];
     $date = $row['date_'];
-    $atty = $row['attorney'];
+    $attorney = $row['attorney'];
     $actionID = $row['actionID'];
     $hourlyRate = $row['hourlyRate'];
     $timeSpent = $row['timeSpent'];
@@ -90,11 +91,6 @@ if(!empty($_GET['activityID']) && (!empty($_GET['delete']))){
     <form id="student-form" action=<?php echo $url ?> method="post">
 
         <div class="form-group">
-            <label for="activityID">keyID</label>
-            <input type="text" class="form-control"
-                   id="activityID" name="activityID" value="<?php echo $activityID ?>">
-        </div>
-        <div class="form-group">
             <label for="caseID">CaseID</label>
             <input type="text" class="form-control"
                    id="caseID" name="caseID" value="<?php echo $caseID ?>">
@@ -132,11 +128,11 @@ if(!empty($_GET['activityID']) && (!empty($_GET['delete']))){
                     $fName = $row['first'];
                     $lName = $row['last'];
 
-                    echo "<option value='$clientID' ";
+                    echo "<option value='$attorney' ";
 
                     //If this is the advisor of the student
                     //being updated, select it
-                    if($attyID == $atty){
+                    if($attyID == $attorney){
                         echo "selected";
                     }
                     echo ">".$lName.", ".$fName."</option>";

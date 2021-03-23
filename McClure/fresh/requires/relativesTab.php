@@ -1,4 +1,5 @@
 <?php
+session_start();
 //var_dump($_SESSION);
 //Turn on error reporting
 //ini_set('display_errors', 1);
@@ -45,7 +46,7 @@ $result = mysqli_query($cnxn, $sql);
         <?php
 
         foreach ($result as $row) {
-            $relativeID = $row['relativeID'];
+            $_SESSION['relativeID'] = $row['relativeID'];
             $clientID = $row['clientID'];
             $lName = $row['lName'];
             $fName = $row['fName'];
@@ -63,7 +64,7 @@ $result = mysqli_query($cnxn, $sql);
 
             echo "
                 <tr>
-                    <td><a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/newRelative.php?actionID=$relativeID'>$relativeID</td>
+                    <td><a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/newRelative.php?actionID=".$_SESSION['relativeID']."'>".$_SESSION['relativeID']."</td>
                     <td>$clientID</td>
                     <td>$lName</td>
                     <td>$fName</td>
@@ -78,7 +79,7 @@ $result = mysqli_query($cnxn, $sql);
                     <td>$phone</td>
                     <td>$relationship</td>
                     <td>$comment_</td>
-                    <td><a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/newRelative.php?actionID=$relativeID&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
+                    <td><a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/newRelative.php?actionID=".$_SESSION['relativeID']."&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
                 </tr>";
         }
         ?>

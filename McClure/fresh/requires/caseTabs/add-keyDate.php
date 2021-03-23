@@ -1,7 +1,7 @@
 <?php
-
+session_start();
 //Turn on error reporting -- this is critical!
-ini_set('display_errors', 1);
+//ini_set('display_errors', 1);
 //error_reporting(E_ALL);
 //session_start();
 //var_dump($_POST);
@@ -32,7 +32,7 @@ if(isset($_GET['action'])){
     $sql = "UPDATE keyDates
             SET caseID='$caseID', date_='$date', note='$note', assignedTo='$assignedTo', priority='$priority'
             , done='$done', by_='$by_', when_='$when'
-            WHERE keyDate='$keyDate'";
+            WHERE keyDate='".$_SESSION['keyID']."'";
 }
 else {
 //Write an SQL statement

@@ -101,11 +101,6 @@ if(!empty($_GET['actionID']) && (!empty($_GET['delete']))){
     <form id="student-form" action=<?php echo $url ?> method="post">
 
         <div class="form-group">
-            <label for="relativeID">Relative ID</label>
-            <input type="text" class="form-control"
-                   id="relativeID" name="relativeID" value="<?php echo $relativeID ?>">
-        </div>
-        <div class="form-group">
             <label for="clientID">Client ID</label>
             <input type="text" class="form-control"
                    id="clientID" name="clientID" value="<?php echo $clientID ?>">

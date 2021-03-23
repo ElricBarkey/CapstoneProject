@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 //Turn on error reporting -- this is critical!
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
@@ -44,7 +44,7 @@ $description = mysqli_real_escape_string($cnxn, $_POST['description']);
 if(isset($_GET['action'])){
     $sql = "UPDATE category
             SET categoryName='$categoryName', description='$description'
-            WHERE categoryID='$categoryID'";
+            WHERE categoryID='".$_SESSION['categoryID']."'";
 }
 else {
 //Write an SQL statement

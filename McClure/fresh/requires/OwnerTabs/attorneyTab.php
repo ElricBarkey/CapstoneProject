@@ -1,4 +1,5 @@
 <?php
+session_start();
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
 $sql = "SELECT * FROM `attorneys`;";
@@ -16,26 +17,26 @@ $result = mysqli_query($cnxn, $sql);
     <table class="table" id="test"><!-- gets first name, last name, and email -->
         <thead>
         <tr>
+            <th scope="col">AttorneyID</th>
             <th scope="col">FirstName</th>
-            <th scope="col">categoryID</th>
-            <th scope="col">actionName</th>
-            <th scope="col">actionDescription</th>
-            <th scope="col">delete</th>
-            <th scope="col">delete</th>
-            <th scope="col">delete</th>
-            <th scope="col">delete</th>
-            <th scope="col">delete</th>
-            <th scope="col">delete</th>
-            <th scope="col">delete</th>
-            <th scope="col">delete</th>
-            <th scope="col">delete</th>
-            <th scope="col">delete</th>
-            <th scope="col">delete</th>
-            <th scope="col">delete</th>
-            <th scope="col">delete</th>
-            <th scope="col">delete</th>
-            <th scope="col">delete</th>
-            <th scope="col">delete</th>
+            <th scope="col">MiddleName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">FirmName</th>
+            <th scope="col">title</th>
+            <th scope="col">BirthDate</th>
+            <th scope="col">HireDate</th>
+            <th scope="col">EndDate</th>
+            <th scope="col">current</th>
+            <th scope="col">address1</th>
+            <th scope="col">address2</th>
+            <th scope="col">city</th>
+            <th scope="col">state</th>
+            <th scope="col">zip</th>
+            <th scope="col">phone</th>
+            <th scope="col">email</th>
+            <th scope="col">Notes</th>
+            <th scope="col">hourlyRate</th>
+            <th scope="col">reportsTo</th>
             <th scope="col">delete</th>
         </tr>
         </thead>
@@ -43,7 +44,7 @@ $result = mysqli_query($cnxn, $sql);
         <?php
 
         foreach ($result as $row) {
-            $attyID = $row['attorneyID'];
+            $_SESSION['attyID'] = $row['attorneyID'];
             $fName = $row['fName'];
             $mName = $row['mName'];
             $lName = $row['lName'];
@@ -65,7 +66,7 @@ $result = mysqli_query($cnxn, $sql);
             $reportsTo = $row['reportsTo'];
             echo "
                 <tr>
-                    <td><a href='requires/OwnerTabs/newAttorney.php?attorneyID=$attyID'>$attyID</td>
+                    <td><a href='requires/OwnerTabs/newAttorney.php?attorneyID=".$_SESSION['attyID']."'>".$_SESSION['attyID']."</td>
                     <td>$fName</td>
                     <td>$mName</td>
                     <td>$lName</td>
@@ -85,7 +86,7 @@ $result = mysqli_query($cnxn, $sql);
                     <td>$notes</td>
                     <td>$hourlyRate</td>
                     <td>$reportsTo</td>
-                    <td><a href='requires/OwnerTabs/newAttorney.php?attorneyID=$attyID&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
+                    <td><a href='requires/OwnerTabs/newAttorney.php?attorneyID=".$_SESSION['attyID']."&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
                 </tr>
                 ";
         }
