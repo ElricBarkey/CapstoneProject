@@ -157,21 +157,6 @@ $result = mysqli_query($cnxn, $sql);
                             <label for='firstName'>Contact Name</label>
                             <input type=\"text\" class=\"form-control\" id='contactName' name='contactName' value=\"$contactName\">
                          </div>
-                      </div>
-                      
-                      <div style='' class='row'>
-                         <div class='col-sm-4'>
-                            <label for='firstName'>set appointement</label>
-                            <input type=\"text\" class=\"form-control\" id='aptStart' name=\"aptStart\">
-                         </div>
-                         <div class='col-sm-4'>
-                            <label for='firstName'>End Appointment</label>
-                            <input type=\"text\" class=\"form-control\" id='aptEnd' name=\"aptEnd\">
-                         </div>
-                         <div class='col-sm-4'>
-                            <label for='firstName'>Subject</label>
-                            <input type=\"text\" class=\"form-control\" id='subject' name=\"subject\">
-                         </div>
                       </div>";
             ?>
             <label>Confirm changes?</label>

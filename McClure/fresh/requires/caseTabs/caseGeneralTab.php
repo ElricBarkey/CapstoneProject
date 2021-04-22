@@ -31,7 +31,7 @@ if($_POST['confirmBox'] == 'on'){
 `lastBillDate`='".$_POST['lastBill']."',`bill`='".$_POST['bill']."',`billInfo`='".$_POST['billing']."',
  `Marked`='".$_POST['Mark']."', `Responsible`='".$_POST['responsible']."'
 WHERE `ClientID`='".$_SESSION['ClientID']."';";
-echo $sql;
+//echo $sql;
     echo '<script>alert("database updated!")</script>';
     mysqli_query($cnxn, $sql);
 }

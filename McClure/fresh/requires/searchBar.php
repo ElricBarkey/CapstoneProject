@@ -18,8 +18,8 @@ if((isset($_SESSION['fSearch'])) && isset($_SESSION['lSearch'])) {
 ?>
 <form method="post" action="#">
     <div>
-        <input type="text" id="fSearch" name="fSearch" value="First">
-        <input type="text" id="lSearch" name="lSearch" value="Last">
+        <input type="text" id="fSearch" name="fSearch" placeholder="First">
+        <input type="text" id="lSearch" name="lSearch" placeholder="Last">
         <button type="submit">Search</button>
     </div>
 </form>

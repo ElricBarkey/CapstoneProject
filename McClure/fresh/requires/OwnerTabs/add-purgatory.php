@@ -8,53 +8,54 @@
 //Connect to your database
 include('../../db.php');
 
-//Validate the data
-//require ('validate.php');
-//if (!validForm()) {
-//    die("<p>Please click back and try again</p>");
-//}
+//Define a query
+$sql = "SELECT * FROM `purgatory` WHERE clientID = '".$_SESSION['pClientID']."';";
+$result = mysqli_query($cnxn, $sql);
+//var_dump($result);
+$row = mysqli_fetch_array($result);
+//var_dump($row);
 
-//Get the form data and "escape" it
-$clientID = mysqli_real_escape_string($cnxn, $_POST['clientID']);
-$clientName = mysqli_real_escape_string($cnxn, $_POST['clientNumber']);
-$clientEmail = mysqli_real_escape_string($cnxn, $_POST['clientEmail']);
-$lName = mysqli_real_escape_string($cnxn, $_POST['lName']);
-$fName = mysqli_real_escape_string($cnxn, $_POST['fName']);
-$mName = mysqli_real_escape_string($cnxn, $_POST['mName']);
-$preferredName = mysqli_real_escape_string($cnxn, $_POST['preferredName']);
-$salutation = mysqli_real_escape_string($cnxn, $_POST['salutation']);
-$address1 = mysqli_real_escape_string($cnxn, $_POST['address1']);
-$city = mysqli_real_escape_string($cnxn, $_POST['city']);
-$cState = mysqli_real_escape_string($cnxn, $_POST['cState']);
-$zip = mysqli_real_escape_string($cnxn, $_POST['zip']);
-$DOB = mysqli_real_escape_string($cnxn, $_POST['DOB']);
-$DOD = mysqli_real_escape_string($cnxn, $_POST['DOD']);
-$phoneNum = mysqli_real_escape_string($cnxn, $_POST['phoneNum']);
-$contactName = mysqli_real_escape_string($cnxn, $_POST['contactName']);
-$contactTitle = mysqli_real_escape_string($cnxn, $_POST['contactTitle']);
-$Referral = mysqli_real_escape_string($cnxn, $_POST['Referral']);
-$married = mysqli_real_escape_string($cnxn, $_POST['married']);
-$current = mysqli_real_escape_string($cnxn, $_POST['current']);
-$SLName = mysqli_real_escape_string($cnxn, $_POST['SLName']);
-$SFName = mysqli_real_escape_string($cnxn, $_POST['SFName']);
-$SMName = mysqli_real_escape_string($cnxn, $_POST['SMName']);
-$address2 = mysqli_real_escape_string($cnxn, $_POST['address2']);
-$sCity = mysqli_real_escape_string($cnxn, $_POST['sCity_']);
-$cSState = mysqli_real_escape_string($cnxn, $_POST['cSState']);
-$sZip = mysqli_real_escape_string($cnxn, $_POST['sZip']);
-$DOB2 = mysqli_real_escape_string($cnxn, $_POST['DOB2']);
-$DOD2 = mysqli_real_escape_string($cnxn, $_POST['DOD2']);
-$sPhoneNum = mysqli_real_escape_string($cnxn, $_POST['sPhoneNum']);
-$message = mysqli_real_escape_string($cnxn, $_POST['message']);
-$legalService = mysqli_real_escape_string($cnxn, $_POST['legalService']);
-$comments = mysqli_real_escape_string($cnxn, $_POST['comments']);
+//Get the data from the row
+$clientID = $row['clientID'];
+$clientNumber = $row['clientNumber'];
+$clientEmail = $row['clientEmail'];
+$lName = $row['lName'];
+$fName = $row['fName'];
+$mName = $row['mName'];
+$preferredName = $row['preferredName'];
+$salutation = $row['salutation'];
+$address1 = $row['address1'];
+$city = $row['city'];
+$cState = $row['cState'];
+$zip = $row['zip'];
+$DOB = $row['DOB'];
+$DOD = $row['DOD'];
+$phoneNum = $row['phoneNum'];
+$contactName = $row['contactName'];
+$contactTitle = $row['contactTitle'];
+$Referral = $row['Referral'];
+$married = $row['married'];
+$current = $row['current_'];
+$SLName = $row['sLName'];
+$SFName = $row['sFName'];
+$SMName = $row['sMName'];
+$address2 = $row['address2'];
+$sCity = $row['sCity'];
+$cSState = $row['cSState'];
+$sZip = $row['sZip'];
+$DOB2 = $row['DOB2'];
+$DOD2 = $row['DOD2'];
+$sPhoneNum = $row['sPhoneNum'];
+$message = $row['message'];
+$legalService = $row['legalService'];
+$comments = $row['comments'];
 
 //See if this is an update
 if($_POST['save'] =='on'){
     $sql = "INSERT INTO `clients`(`clientNumber`, `clientEmail`, `lName`, `fName`, `mName`, `preferredName`,
  `salutation`, `address1`, `city`, `cState`, `zip`, `DOB`, `DOD`, `phoneNum`, `contactName`, `contactTitle`, `Referral`,
   `married`, `current_`, `sLName`, `sFName`, `sMName`, `address2`, `sCity`, `cSState`, `sZip`, `DOB2`, `DOD2`, `sPhoneNum`,
-   `message`, `legalService`, `comments`) VALUES ('$clientName','$clientEmail','$lName','$fName','$mName','$preferredName',
+   `message`, `legalService`, `comments`) VALUES ('$clientNumber','$clientEmail','$lName','$fName','$mName','$preferredName',
    '$salutation','$address1','$city','$cState','$zip','$DOB','$DOD','$phoneNum','$contactName','$contactTitle','$Referral',
    '$married','$current','$SLName','$SFName','$SMName','$address2','$sCity','$cSState','$sZip','$DOB2','$DOD2','$sPhoneNum',
    '$message','$legalService','$comments')";
@@ -73,6 +74,6 @@ else if($_POST['delete'] =='on'){
 
 //Print a confirmation
 if ($result) {
-    echo "Student inserted successfully!";
+    echo "Client inserted successfully!";
     echo '<a href="http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/index.php?&ownerTab=purgatory">View subCategories</a>';
 }

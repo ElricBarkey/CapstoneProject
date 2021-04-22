@@ -12,7 +12,6 @@ session_start();
             <th scope="col">actionID</th>
             <th scope="col">date</th>
             <th scope="col">attorney</th>
-            <th scope="col">action</th>
             <th scope="col">description</th>
             <th scope="col">hourly rate</th>
             <th scope="col">time</th>
@@ -36,7 +35,6 @@ session_start();
             $actionID = $row['actionID'];
             $date = $row['date_'];
             $atty = $row['attorneyID'];
-            $action = $row['actionID'];
             $description = $row['description'];
             $hourlyRate = $row['hourlyRate'];
             $time = $row['timeSpent'];
@@ -48,12 +46,11 @@ session_start();
                 <td>$actionID</td>
                 <td>$date</td>
                 <td>$atty</td>
-                <td>$action</td>
                 <td>$description</td>
                 <td>$hourlyRate</td>
                 <td>$time</td>
                 <td>$slipTotal</td>
-                <td><a href='requires/OwnerTabs/newAction.php?actionID=".$_SESSION['slipID']."&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
+                <td><a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/caseTabs/newSlip.php?actionID=".$_SESSION['slipID']."&delete=true' onclick='return confirm(\"Are you sure you want to delete?\")'>Delete</td>
             </tr>";
         }
         ?>

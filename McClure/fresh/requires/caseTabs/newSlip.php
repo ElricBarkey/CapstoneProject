@@ -47,6 +47,23 @@ if(!empty($_GET['slipID'])){
     $slipTotal = $row['total'];
 
 }
+
+if(!empty($_SESSION['slipID']) && (!empty($_GET['delete']))){
+    //Get the SID
+    $slipID = $_SESSION['slipID'];
+    //echo $sid;
+
+    //Query the database
+    $slipID = mysqli_real_escape_string($cnxn, $slipID);
+    $sql = "DELETE FROM slips WHERE slipID = '$slipID'";
+    $result = mysqli_query($cnxn, $sql);
+    //var_dump($result);
+    //var_dump($row);
+    echo $sql;
+    //Get the data from the row
+    //header("location: http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/caseTabs/caseController.php?caseTab=slips?caseTab=escrow");
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -105,7 +122,6 @@ if(!empty($_GET['slipID'])){
                     }
                     echo ">".$actionName."</option>";
                 }
-
                 ?>
 
             </select>
@@ -132,15 +148,15 @@ if(!empty($_GET['slipID'])){
                 foreach ($result as $row) {
 
                     //Get the row data
-                    $client_ID = $row['attorneyID'];
+                    $attorney_ID = $row['attorneyID'];
                     $fName = $row['first'];
                     $lName = $row['last'];
 
-                    echo "<option value='".$_POST['clientID']."' ";
+                    echo "<option value='".$atty."' ";
 
                     //If this is the advisor of the student
                     //being updated, select it
-                    if($client_ID == $atty){
+                    if($attorney_ID == $atty){
                         echo "selected";
                     }
                     echo ">".$lName.", ".$fName."</option>";
@@ -178,7 +194,9 @@ if(!empty($_GET['slipID'])){
     </form>
     <a href="http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/index.php?&ownerTab=action">View actions</a>
 </div>
+<?php
 
+?>
 <script src="//code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

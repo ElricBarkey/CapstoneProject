@@ -26,11 +26,12 @@ $result = mysqli_query($cnxn, $sql);
 
         foreach ($result as $row) {
             $clientID = $row['clientID'];
+            $_SESSION['pClientID'] = $row['clientID'];
             $lName = $row['lName'];
             $fName = $row['fName'];
             echo "
                 <tr>
-                    <td><a href='requires/OwnerTabs/newPurgatory.php?clientID=$clientID'>$clientID</td>
+                    <td><a href='requires/OwnerTabs/newPurgatory2.php?clientID=$clientID'>$clientID</td>
                     <td>$lName</td>
                     <td>$fName</td>
                 </tr>";

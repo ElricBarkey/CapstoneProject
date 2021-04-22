@@ -16,14 +16,13 @@ include('../../db.php');
 //}
 
 //Get the form data and "escape" it
-$slipID = mysqli_real_escape_string($cnxn, $_POST['slipID']);
-$actionID = mysqli_real_escape_string($cnxn, $_POST['actionID']);
-$attorneyID = mysqli_real_escape_string($cnxn, $_POST['attorneyID']);
-$date = mysqli_real_escape_string($cnxn, $_POST['date_']);
-$rate = mysqli_real_escape_string($cnxn, $_POST['hourlyRate']);
-$timeSpent = mysqli_real_escape_string($cnxn, $_POST['timeSpent']);
-$total = mysqli_real_escape_string($cnxn, $_POST['total']);
-$description = mysqli_real_escape_string($cnxn, $_POST['description']);
+$slipID = $_POST['slipID'];
+$actionID = $_POST['actionID'];
+$attorneyID = $_POST['attorneyID'];
+$rate = $_POST['hourlyRate'];
+$timeSpent = $_POST['timeSpent'];
+$total = $_POST['total'];
+$description = $_POST['description'];
 
 //See if this is an update
 if(isset($_GET['action'])){
@@ -45,5 +44,5 @@ $result = mysqli_query($cnxn, $sql);
 //Print a confirmation
 if ($result) {
     echo "Student inserted successfully!";
-    echo '<a href="http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/index.php?&ownerTab=action">View actions</a>';
+    echo '<a href="http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/caseTabs/caseController.php?caseTab=slips?&ownerTab=action">View actions</a>';
 }

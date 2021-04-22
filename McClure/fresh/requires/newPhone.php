@@ -103,11 +103,6 @@ if(!empty($_GET['subCategoryID']) && (!empty($_GET['delete']))){
     <form id="student-form" action=<?php echo $url ?> method="post">
 
         <div class="form-group">
-            <label for="contactID">contactID</label>
-            <input type="text" class="form-control"
-                   id="contactID" name="contactID" value="<?php echo $contactID ?>">
-        </div>
-        <div class="form-group">
             <label for="caseID">caseID</label>
             <input type="text" class="form-control"
                    id="caseID" name="caseID" value="<?php echo $caseID ?>">
