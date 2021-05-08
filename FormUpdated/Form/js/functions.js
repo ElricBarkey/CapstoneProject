@@ -2,8 +2,8 @@
 $("#hidden").hide();
 //show and hide spouse information
 $(document).ready(function(){
-    $("#spouseYes").click(function (){
-        if ($("#spouseYes").prop("checked")){
+    $("#marriedYes").click(function (){
+        if ($("#marriedYes").prop("checked")){
             $("#hidden").show();
         } else{
             $("#hidden").hide();
@@ -13,13 +13,13 @@ $(document).ready(function(){
 
 
 $(document).ready(function(){
-    $("#spouseNo").click(function (){
-        if ($("#spouseNo").prop("checked")) {
+    $("#marriedNo").click(function (){
+        if ($("#marriedNo").prop("checked")) {
             $("#hidden").hide();
         }
     });
 });
-
+/*
 $(document).ready(function(){
     $("#doesNotApp").click(function (){
         if ($("#doesNotApp").prop("checked")) {
@@ -27,3 +27,5 @@ $(document).ready(function(){
         }
     });
 });
+
+ */

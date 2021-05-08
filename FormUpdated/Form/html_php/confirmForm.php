@@ -189,9 +189,9 @@ else
 
 
 //catch if spouse is selected
-if (validSpouseOption($_POST['spouse']))
+if (validMarriedOption($_POST['married']))
 {
-    if ($_POST['spouse'] == "yes")
+    if ($_POST['married'] == "yes")
     {
         //spouse fields
         if (!empty($_POST['sFirst']))
@@ -248,41 +248,41 @@ if (validSpouseOption($_POST['spouse']))
             $isValid = false;
         }
 
-        if (!empty($_POST['sAddress']))
-        {
+        //if (!empty($_POST['sAddress']))
+        //{
             $address2 = trim($_POST['sAddress']);
-        }
-        else
-        {
-            $isValid = false;
-        }
+        //}
+        //else
+        //{
+            //$isValid = false;
+        //}
 
-        if (!empty($_POST['sCity']))
-        {
+        //if (!empty($_POST['sCity']))
+       // {
             $spouseCity = trim($_POST['sCity']);
-        }
-        else
-        {
-            $isValid = false;
-        }
+        //}
+       // else
+       // {
+        //    $isValid = false;
+        //}
 
-        if (!empty($_POST['sState']))
-        {
+       // if (!empty($_POST['sState']))
+       // {
             $spouseState = trim($_POST['sState']);
-        }
-        else
-        {
-            $isValid = false;
-        }
+       // }
+        //else
+       // {
+        //    $isValid = false;
+        //}
 
-        if (!empty($_POST['sZip']))
-        {
+        //if (!empty($_POST['sZip']))
+       // {
             $spouseZip = trim($_POST['sZip']);
-        }
-        else
-        {
-            $isValid = false;
-        }
+       // }
+       // else
+       // {
+       //     $isValid = false;
+       // }
     }
 }
 else
@@ -341,6 +341,7 @@ if ($isValid)
     echo '<br>';
 
     echo '<div class="container"><h1 class="justify-content-center">Thank you for contacting me</h1></div>';
+    echo '<div class="container"><h1 class="justify-content-center">You will be contacted within 24 to 48 hours</h1></div>';
 
     echo '<br>';
     echo '<br>';
@@ -359,7 +360,7 @@ if ($isValid)
 
     //Send the query to the db
     $result = mysqli_query($cnxn, $q);
-    //var_dump($result);
+    var_dump($result);
     //echo '<p>'.mysqli_error($cnxn)." ".mysqli_errno($cnxn).'</p>';
 
 }

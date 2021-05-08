@@ -161,6 +161,7 @@ function validate()
         errPhoneNum.style.visibility = "visible";
         valid = false;
     }
+    /*
     else
     {
         let validP = validatePhoneNumber(phoneNum);
@@ -171,6 +172,8 @@ function validate()
             valid = false;
         }
     }
+
+     */
 
     //Check address
     let address = document.getElementById("address").value;
@@ -204,7 +207,7 @@ function validate()
         valid = false;
     }
 
-
+/*
     // add check if the are you legally married radio buttons are selected
     let marriedYes = document.getElementById("marriedYes").checked;
     let marriedNo = document.getElementById("marriedNo").checked;
@@ -225,8 +228,30 @@ function validate()
         valid = false;
     }
 
-    //spouse info validation
-    if (spouseYes)
+ */
+
+    // add check if the are can we contact your spouse radio buttons are selected
+    let spouseYes = document.getElementById("spouseYes").checked;
+    let spouseNo = document.getElementById("spouseNo").checked;
+    let doesNotApply = document.getElementById("doesNotApp").checked;
+
+    if (spouseYes == false && spouseNo == false && doesNotApply == false) {
+        let errSpouseCheck = document.getElementById("errSpouseCheck");
+        errSpouseCheck.style.visibility = "visible";
+        valid = false;
+    }
+
+    // add check if the are you legally married radio buttons are selected
+    let marriedYes = document.getElementById("marriedYes").checked;
+    let marriedNo = document.getElementById("marriedNo").checked;
+    if (marriedYes == false && marriedNo == false) {
+        let errMarried = document.getElementById("errMarried");
+        errMarried.style.visibility = "visible";
+        valid = false;
+    }
+
+    //spouse info validation//spouseYes
+    if (marriedYes)
     {
         //Check first name
         let sFirst = document.getElementById("sFirst").value;
@@ -294,6 +319,8 @@ function validate()
             errsPhoneNum.style.visibility = "visible";
             valid = false;
         }
+
+        /*
         else
         {
             let validsP = validatePhoneNumber(sPhoneNum);
@@ -305,6 +332,9 @@ function validate()
             }
         }
 
+         */
+
+        /*
         let sAddress = document.getElementById("sAddress").value;
         if (sAddress == "") {
             let errsAddress = document.getElementById("errSAddress");
@@ -332,6 +362,8 @@ function validate()
             errsZip.style.visibility = "visible";
             valid = false;
         }
+
+         */
     }
 
 

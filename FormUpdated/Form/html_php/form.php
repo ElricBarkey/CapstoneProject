@@ -85,6 +85,31 @@ include("../includes/header.php");
         <span class="err" id="errZip">Please enter your zip in format 00000</span>
       </div>
 
+        <!-- spouse information -->
+        <p>Can we contact your spouse? (required)</p>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="spouse" id="spouseYes" value="yes">
+            <label class="form-check-label" for="spouseYes">
+                Yes
+            </label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="spouse" id="spouseNo" value="no">
+            <label class="form-check-label" for="spouseNo">
+                No
+            </label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="spouse" id="doesNotApp" value="Does not apply">
+            <label class="form-check-label" for="doesNotApp">
+                Doesn't Apply
+            </label>
+        </div>
+        <span class="err" id="errSpouseCheck">Please select a option</span>
+
+
         <!-- Married check -->
       <p>Are you Legally Married? (required)</p>
       <div class="form-check">
@@ -102,31 +127,6 @@ include("../includes/header.php");
       </div>
       <span class="err" id="errMarried">Please select a option</span>
       <br>
-
-
-<!-- spouse information -->
-      <p>Can we contact your spouse? (required)</p>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="spouse" id="spouseYes" value="yes">
-        <label class="form-check-label" for="spouseYes">
-          Yes
-        </label>
-      </div>
-
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="spouse" id="spouseNo" value="no">
-        <label class="form-check-label" for="spouseNo">
-          No
-        </label>
-      </div>
-
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="spouse" id="doesNotApp" value="Does not apply">
-        <label class="form-check-label" for="doesNotApp">
-          Doesn't Apply
-        </label>
-      </div>
-      <span class="err" id="errSpouseCheck">Please select a option</span>
 
 
       <br>
