@@ -22,14 +22,14 @@ $result = mysqli_query($cnxn, $sql);
 ?>
 <div id="main" class="container">
     <table class="table" id="test">
-    <thead>
-        <tr>
-            <th scope="col">ContactID</th>
-            <th scope="col">Contact Type</th>
-            <th scope="col">Contact</th>
-            <th scope="col">Delete</th>
-        </tr>
-    </thead>
+        <thead>
+            <tr>
+                <th scope="col">ContactID</th>
+                <th scope="col">Contact Type</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
         <tbody>
         <?php
             foreach ($result as $row) {
@@ -47,7 +47,7 @@ $result = mysqli_query($cnxn, $sql);
             }
         ?>
         </tbody>
-</table>
+    </table>
 <a href="http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/newPhone.php">Add a contact</a>
 </div>
 

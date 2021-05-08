@@ -45,6 +45,6 @@ $result = mysqli_query($cnxn, $sql);
 
 //Print a confirmation
 if ($result) {
-    echo "Student inserted successfully!";
-    echo '<a href="http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/caseTabs/caseController.php?caseTab=escrow">View actions</a>';
+    echo "Escrow inserted successfully!";
+    echo '<a href="http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/caseTabs/caseController.php?caseTab=escrow">View Escrow</a>';
 }

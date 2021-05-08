@@ -57,6 +57,6 @@ $result = mysqli_query($cnxn, $sql);
 
 //Print a confirmation
 if ($result) {
-    echo "Student inserted successfully!";
-    echo '<a href="http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/index.php?tab=relatives">View actions</a>';
+    echo "Relative inserted successfully!";
+    echo '<a href="http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/index.php?tab=relatives">View Relatives</a>';
 }

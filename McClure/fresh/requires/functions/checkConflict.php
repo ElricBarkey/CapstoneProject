@@ -6,7 +6,7 @@ $fName = $result[''];
 $lName = $result[''];
 $sFName = $result[''];
 $sLName = $result[''];
-include('../../db.php');
+//include('../../db.php');
 
 $_SESSION['pClientID'] = $_GET['clientID'];
 
@@ -40,6 +40,15 @@ function clientCheck($fName, $lName, $cnxn){
     }
 }
 
+function clientAlert($fName, $lName, $cnxn){
+    $sql = "SELECT DISTINCT `fName`, `lName` FROM clients WHERE fName = '".$fName."' AND lName = '".$lName."';";
+    $result = mysqli_query($cnxn, $sql);
+    $row = mysqli_fetch_array($result);
+    if($row['fName']){
+        return $fName . " " . $lName . " Exists as a Client";
+    }
+}
+
 //check if client exists as a spouse
 function spouseCheck($fName, $lName, $cnxn){
     $sql = "SELECT DISTINCT `fName`, `lName`, `sFName`, `sLName` FROM clients WHERE sFName = '".$fName."' AND sLName = '".$lName."';";
@@ -47,6 +56,15 @@ function spouseCheck($fName, $lName, $cnxn){
     $row = mysqli_fetch_array($result);
     if($row['sFName']){
         echo "<script>alert('Person ".$fName.", ".$lName." exists as a spouse of ".$row['fName'].", ".$row['lName']."')</script>";
+    }
+}
+
+function spouseAlert($fName, $lName, $cnxn){
+    $sql = "SELECT DISTINCT `fName`, `lName`, `sFName`, `sLName` FROM clients WHERE sFName = '".$fName."' AND sLName = '".$lName."';";
+    $result = mysqli_query($cnxn, $sql);
+    $row = mysqli_fetch_array($result);
+    if($row['sFName']){
+        return "Exists as spouse of " . $row['fName'] . " " .  $row['lName'];
     }
 }
 
@@ -65,5 +83,20 @@ function relativeCheck($fName, $lName, $cnxn){
         $result = mysqli_query($cnxn, $sql);
         $row = mysqli_fetch_array($result);
         echo "<script>alert('Person ".$fName.", ".$lName." exists as relative of client ".$row['fName'].", ".$row['lName']."')</script>";
+    }
+}
+
+function relativeAlert($fName, $lName, $cnxn){
+    $sql = "SELECT DISTINCT `clientID`, `fName`, `lName` FROM relatives WHERE fName = '".$fName."' AND lName = '".$lName."';";
+    $result = mysqli_query($cnxn, $sql);
+    $row = mysqli_fetch_array($result);
+
+    if($row['fName']){
+        $tempID = $row['clientID'];
+        //relative exists, get client
+        $sql = "SELECT `fName`, `lName` FROM clients WHERE clientID='".$tempID."';";
+        $result = mysqli_query($cnxn, $sql);
+        $row = mysqli_fetch_array($result);
+        echo "Exists as relative of " . $row['fName']. " " . $row['lName'];
     }
 }

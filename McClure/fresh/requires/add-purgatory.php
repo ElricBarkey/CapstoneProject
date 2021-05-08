@@ -1,15 +1,17 @@
 <?php
-
+session_start();
+$_SESSION['pClientID'] = $_GET['ID'];
 //Turn on error reporting -- this is critical!
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
 
 //var_dump($_POST);
 //Connect to your database
-include('../../db.php');
+include('../db.php');
 
 //Define a query
 $sql = "SELECT * FROM `purgatory` WHERE clientID = '".$_SESSION['pClientID']."';";
+
 $result = mysqli_query($cnxn, $sql);
 //var_dump($result);
 $row = mysqli_fetch_array($result);
@@ -50,8 +52,9 @@ $message = $row['message'];
 $legalService = $row['legalService'];
 $comments = $row['comments'];
 
-//See if this is an update
-if($_POST['save'] =='on'){
+//See if this is a save
+/*if($_POST['save'] =='on'){
+
     $sql = "INSERT INTO `clients`(`clientNumber`, `clientEmail`, `lName`, `fName`, `mName`, `preferredName`,
  `salutation`, `address1`, `city`, `cState`, `zip`, `DOB`, `DOD`, `phoneNum`, `contactName`, `contactTitle`, `Referral`,
   `married`, `current_`, `sLName`, `sFName`, `sMName`, `address2`, `sCity`, `cSState`, `sZip`, `DOB2`, `DOD2`, `sPhoneNum`,
@@ -61,19 +64,41 @@ if($_POST['save'] =='on'){
    '$message','$legalService','$comments')";
 
     $result = mysqli_query($cnxn, $sql);
-
-//Write an SQL statement
     $sql = "DELETE FROM purgatory WHERE clientID = '$clientID';";
-    echo$sql;
+    $result = mysqli_query($cnxn, $sql);
+}*/
+if($_GET['save'] =='on'){
+
+    $sql = "INSERT INTO `clients`(`clientNumber`, `clientEmail`, `lName`, `fName`, `mName`, `preferredName`,
+ `salutation`, `address1`, `city`, `cState`, `zip`, `DOB`, `DOD`, `phoneNum`, `contactName`, `contactTitle`, `Referral`,
+  `married`, `current_`, `sLName`, `sFName`, `sMName`, `address2`, `sCity`, `cSState`, `sZip`, `DOB2`, `DOD2`, `sPhoneNum`,
+   `message`, `legalService`, `comments`) VALUES ('$clientNumber','$clientEmail','$lName','$fName','$mName','$preferredName',
+   '$salutation','$address1','$city','$cState','$zip','$DOB','$DOD','$phoneNum','$contactName','$contactTitle','$Referral',
+   '$married','$current','$SLName','$SFName','$SMName','$address2','$sCity','$cSState','$sZip','$DOB2','$DOD2','$sPhoneNum',
+   '$message','$legalService','$comments')";
+
+    $result = mysqli_query($cnxn, $sql);
+    $sql = "DELETE FROM purgatory WHERE clientID = '$clientID';";
     $result = mysqli_query($cnxn, $sql);
 }
+/*
 else if($_POST['delete'] =='on'){
+    $sql = "DELETE FROM purgatory WHERE clientID = '$clientID';";
+    $result = mysqli_query($cnxn, $sql);
+}
+*/
+else if($_GET['delete'] =='on'){
     $sql = "DELETE FROM purgatory WHERE clientID = '$clientID';";
     $result = mysqli_query($cnxn, $sql);
 }
 
 //Print a confirmation
 if ($result) {
-    echo "Client inserted successfully!";
-    echo '<a href="http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/index.php?&ownerTab=purgatory">View subCategories</a>';
+    if($_GET['delete'] == 'on'){
+        echo "Client deleted successfully!";
+    }
+    else{
+        echo "Client inserted successfully!";
+    }
+    echo '<a href="http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/index.php">View Purgatory</a>';
 }

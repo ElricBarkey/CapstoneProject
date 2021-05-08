@@ -58,6 +58,6 @@ $result = mysqli_query($cnxn, $sql);
 
 //Print a confirmation
 if ($result) {
-    echo "Student inserted successfully!";
-    echo '<a href="http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/index.php?&ownerTab=category">View actions</a>';
+    echo "Category inserted successfully!";
+    echo '<a href="http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/index.php?&ownerTab=category">View Categories</a>';
 }

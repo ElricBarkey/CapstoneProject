@@ -51,6 +51,6 @@ $result = mysqli_query($cnxn, $sql);
 
 //Print a confirmation
 if ($result) {
-    echo "Student inserted successfully!";
+    echo "Activity inserted successfully!";
     echo '<a href="http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/caseTabs/caseController.php?caseTab=activities">View activities</a>';
 }

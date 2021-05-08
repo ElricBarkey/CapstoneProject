@@ -207,7 +207,7 @@ if(!empty($_GET['activityID']) && (!empty($_GET['delete']))){
             ?>
         </button>
     </form>
-    <a href="http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/caseTabs/caseController.php?caseTab=keyDates">View Key Dates</a>
+    <a href="http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/caseTabs/caseController.php?caseTab=keyDa">View Activities</a>
 </div>
 
 <script src="//code.jquery.com/jquery-3.3.1.slim.min.js"></script>

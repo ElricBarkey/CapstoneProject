@@ -66,10 +66,10 @@ if($_POST['confirmBox'] == 'on'){
         ?>
         <div style='' class='row'>
             <div class='col-sm-4'>
-                <input type="text" class="form-control" id='newCaseName' name="newCaseName" value="New Case Name">
+                <input type="text" class="form-control" id='newCaseName' name="newCaseName" placeholder="New Case Name">
             </div>
             <div class='col-sm-4'>
-                <input type="text" class="form-control" id='newCaseStatus' name="newCaseStatus" value="New Case Status">
+                <input type="text" class="form-control" id='newCaseStatus' name="newCaseStatus" placeholder="New Case Status">
             </div>
         </div>
         <button type="submit">Save</button>

@@ -46,6 +46,6 @@ $result = mysqli_query($cnxn, $sql);
 
 //Print a confirmation
 if ($result) {
-    echo "Student inserted successfully!";
+    echo "Date inserted successfully!";
     echo '<a href="http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/requires/caseTabs/caseController.php?caseTab=keyDates">View Key Dates</a>';
 }

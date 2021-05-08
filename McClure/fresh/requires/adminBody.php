@@ -57,10 +57,13 @@
                         <a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/index.php?tab=cases'>Cases</a>|
                         <a href='http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/index.php?tab=activities'>Activities List</a>|
         
-        
+                        <br>
+                        <hr>
+                        <h1 style='text-transform: uppercase'><strong>". $_GET['tab'] ."</strong></h1>
                     </div>
                 </div>
             ";
+
 
             function reload($page){
                 $SESSION['page'] = $page;
@@ -68,5 +71,6 @@
                 header("Refresh:0", "False", "http://bhalbert2.greenriverdev.com/CapstoneProject/McClure/fresh/admin.php");
             }
         ?>
+        <?php include("clientSearchBar.php") ?>
     </div>
 </body>
