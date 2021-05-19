@@ -12,11 +12,11 @@
             crossorigin="anonymous"></script>
 
     <!-- Bootstrap core CSS-->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../PDF-Conversion-NEW/Form/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 
     <!-- My css -->
-    <link href="../css/stylesForm.css" rel="stylesheet">
+    <link href="../../../PDF-Conversion-NEW/Form/css/stylesForm.css" rel="stylesheet">
 
 </head>
 <body>
@@ -25,8 +25,6 @@
 <?php
 require('../includes/checkConfirm.php');
 
-require('/home/ebarkeyg/db.php');
-//echo "connected";
 
 
 //Turn on error reporting
@@ -369,8 +367,8 @@ if ($isValid)
 
 
 <!-- Bootstrap core JavaScript -->
-<script src="../vendor/jquery/jquery.min.js"></script>
-<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="../js/navFunctions.js"></script>
+<script src="../../../PDF-Conversion-NEW/Form/vendor/jquery/jquery.min.js"></script>
+<script src="../../../PDF-Conversion-NEW/Form/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../../PDF-Conversion-NEW/Form/js/navFunctions.js"></script>
 </body>
 </html>

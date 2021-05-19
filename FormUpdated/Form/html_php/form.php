@@ -16,10 +16,17 @@
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 
   <!-- Bootstrap core CSS-->
+<<<<<<< HEAD
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- My css -->
   <link href="../css/stylesForm.css" rel="stylesheet">
+=======
+  <link href="../../../PDF-Conversion-NEW/Form/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- My css -->
+  <link href="../../../PDF-Conversion-NEW/Form/css/stylesForm.css" rel="stylesheet">
+>>>>>>> origin
 
 </head>
 
