@@ -16,10 +16,17 @@
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 
   <!-- Bootstrap core CSS-->
+<<<<<<< HEAD
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- My css -->
+  <link href="../css/stylesForm.css" rel="stylesheet">
+=======
   <link href="../../../PDF-Conversion-NEW/Form/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- My css -->
   <link href="../../../PDF-Conversion-NEW/Form/css/stylesForm.css" rel="stylesheet">
+>>>>>>> origin
 
 </head>
 
@@ -223,11 +230,11 @@ include("../includes/header.php");
 
 
   <!-- Bootstrap core JavaScript -->
-  <script src="../../../PDF-Conversion-NEW/Form/vendor/jquery/jquery.min.js"></script>
-  <script src="../../../PDF-Conversion-NEW/Form/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../../../PDF-Conversion-NEW/Form/js/functions.js"></script>
-  <script src="../../../PDF-Conversion-NEW/Form/js/form.js"></script>
-  <script src="../../../PDF-Conversion-NEW/Form/js/navFunctions.js"></script>
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/functions.js"></script>
+  <script src="../js/form.js"></script>
+  <script src="../js/navFunctions.js"></script>
 
 </body>
 

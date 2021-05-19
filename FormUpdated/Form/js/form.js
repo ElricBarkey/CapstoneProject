@@ -1,5 +1,86 @@
 document.getElementById("myForm").onsubmit = validate;
 
+function validateEmail(email)
+{
+    let symbols = /\S+@\S+\.\S+/;
+    return symbols.test(email);
+}
+
+function validatePhoneNumber(phoneN)
+{
+    let phoneCheck = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+    if(phoneN.match(phoneCheck))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+/*
+function validatedate(inputText)
+{
+    var dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+    // Match the date format through regular expression
+    if(inputText.match(dateformat))
+    {
+        //document.form1.text1.focus();
+        //Test which seperator is used '/' or '-'
+        var opera1 = inputText.split('/');
+        var opera2 = inputText.split('-');
+        lopera1 = opera1.length;
+        lopera2 = opera2.length;
+        // Extract the string into month, date and year
+        if (lopera1>1)
+        {
+            var pdate = inputText.split('/');
+        }
+        else if (lopera2>1)
+        {
+            var pdate = inputText.split('-');
+        }
+        var dd = parseInt(pdate[0]);
+        var mm  = parseInt(pdate[1]);
+        var yy = parseInt(pdate[2]);
+        // Create list of days of a month [assume there is no leap year by default]
+        var ListofDays = [31,28,31,30,31,30,31,31,30,31,30,31];
+        if (mm==1 || mm>2)
+        {
+            if (dd>ListofDays[mm-1])
+            {
+                //alert('Invalid date format!');
+                return false;
+            }
+        }
+        if (mm==2)
+        {
+            var lyear = false;
+            if ( (!(yy % 4) && yy % 100) || !(yy % 400))
+            {
+                lyear = true;
+            }
+            if ((lyear==false) && (dd>=29))
+            {
+                //alert('Invalid date format!');
+                return false;
+            }
+            if ((lyear==true) && (dd>29))
+            {
+                //alert('Invalid date format!');
+                return false;
+            }
+        }
+    }
+    else
+    {
+        //alert("Invalid date format!");
+        //document.form1.text1.focus();
+        return false;
+    }
+}
+ */
+
 function validate()
 {
     //Create a flag variable
@@ -42,7 +123,20 @@ function validate()
         errDOB.style.visibility = "visible";
         valid = false;
     }
+    /*
+    else{
+        let validDOB = validatedate(DOB);
+        if(validDOB == false)
+        {
+            let errDOB= document.getElementById("errDOB");
+            errDOB.style.visibility = "visible";
+            valid = false;
+        }
+    }
 
+     */
+
+    //Check email
     let email = document.getElementById("email").value;
     if (email == "") {
         let errEmail = document.getElementById("errEmail");
@@ -60,19 +154,28 @@ function validate()
         }
     }
 
-    function validateEmail(email)
-    {
-        let symbols = /\S+@\S+\.\S+/;
-        return symbols.test(email);
-    }
-
+    //Check phone number
     let phoneNum = document.getElementById("phoneNum").value;
     if (phoneNum == "") {
         let errPhoneNum = document.getElementById("errPhoneNum");
         errPhoneNum.style.visibility = "visible";
         valid = false;
     }
+    /*
+    else
+    {
+        let validP = validatePhoneNumber(phoneNum);
+        if(validP == false)
+        {
+            let errPhoneNum = document.getElementById("errPhoneNum");
+            errPhoneNum.style.visibility = "visible";
+            valid = false;
+        }
+    }
 
+     */
+
+    //Check address
     let address = document.getElementById("address").value;
     if (address == "") {
         let errAddress = document.getElementById("errAddress");
@@ -80,6 +183,7 @@ function validate()
         valid = false;
     }
 
+    //Check city
     let city = document.getElementById("city").value;
     if (city == "") {
         let errCity = document.getElementById("errCity");
@@ -87,6 +191,7 @@ function validate()
         valid = false;
     }
 
+    //Check state
     let state = document.getElementById("state").value;
     if (state == "") {
         let errState = document.getElementById("errState");
@@ -94,6 +199,7 @@ function validate()
         valid = false;
     }
 
+    //Check zip
     let zip = document.getElementById("zip").value;
     if (zip == "" || zip.length > 5 || zip.length < 5) {
         let errZip = document.getElementById("errZip");
@@ -101,7 +207,7 @@ function validate()
         valid = false;
     }
 
-
+/*
     // add check if the are you legally married radio buttons are selected
     let marriedYes = document.getElementById("marriedYes").checked;
     let marriedNo = document.getElementById("marriedNo").checked;
@@ -122,9 +228,30 @@ function validate()
         valid = false;
     }
 
-    //spouse info validation
+ */
 
-    if (spouseYes)
+    // add check if the are can we contact your spouse radio buttons are selected
+    let spouseYes = document.getElementById("spouseYes").checked;
+    let spouseNo = document.getElementById("spouseNo").checked;
+    let doesNotApply = document.getElementById("doesNotApp").checked;
+
+    if (spouseYes == false && spouseNo == false && doesNotApply == false) {
+        let errSpouseCheck = document.getElementById("errSpouseCheck");
+        errSpouseCheck.style.visibility = "visible";
+        valid = false;
+    }
+
+    // add check if the are you legally married radio buttons are selected
+    let marriedYes = document.getElementById("marriedYes").checked;
+    let marriedNo = document.getElementById("marriedNo").checked;
+    if (marriedYes == false && marriedNo == false) {
+        let errMarried = document.getElementById("errMarried");
+        errMarried.style.visibility = "visible";
+        valid = false;
+    }
+
+    //spouse info validation//spouseYes
+    if (marriedYes)
     {
         //Check first name
         let sFirst = document.getElementById("sFirst").value;
@@ -156,12 +283,34 @@ function validate()
             errSDOB.style.visibility = "visible";
             valid = false;
         }
+        /*
+        else{
+            let validsDOB = validatedate(sDOB);
+            if(validsDOB == false)
+            {
+                let errSDOB= document.getElementById("errSDOB");
+                errSDOB.style.visibility = "visible";
+                valid = false;
+            }
+        }
+
+         */
 
         let sEmail = document.getElementById("sEmail").value;
         if (sEmail == "") {
             let errsEmail = document.getElementById("errSEmail");
             errsEmail.style.visibility = "visible";
             valid = false;
+        }
+        else
+        {
+            let validsE = validateEmail(sEmail);
+            if(validsE == false)
+            {
+                let errsEmail = document.getElementById("errSEmail");
+                errsEmail.style.visibility = "visible";
+                valid = false;
+            }
         }
 
         let sPhoneNum = document.getElementById("sPhoneNum").value;
@@ -171,6 +320,21 @@ function validate()
             valid = false;
         }
 
+        /*
+        else
+        {
+            let validsP = validatePhoneNumber(sPhoneNum);
+            if(validsP == false)
+            {
+                let errsPhoneNum = document.getElementById("errSPhoneNum");
+                errsPhoneNum.style.visibility = "visible";
+                valid = false;
+            }
+        }
+
+         */
+
+        /*
         let sAddress = document.getElementById("sAddress").value;
         if (sAddress == "") {
             let errsAddress = document.getElementById("errSAddress");
@@ -198,6 +362,8 @@ function validate()
             errsZip.style.visibility = "visible";
             valid = false;
         }
+
+         */
     }
 
 
@@ -208,6 +374,18 @@ function validate()
         let errLegal = document.getElementById("errLegal");
         errLegal.style.visibility = "visible";
         valid = false;
+    }
+
+
+    //auto scroll to top
+    if (valid == false){
+        $(document).ready(function () {
+            target_offset = $('#firstName').offset(),
+                target_top = target_offset.top;
+            $('html, body').animate({
+                scrollTop: target_top
+            }, 800);
+        });
     }
 
     return valid;
